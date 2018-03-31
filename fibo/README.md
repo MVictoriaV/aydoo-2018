@@ -1,4 +1,4 @@
-Proyecto 1 - Fibonacci
-======================
+Ejercicio 1
+===========
 
-Alumna: Vasquez, María Victoria.
+María Victoria Vasquez

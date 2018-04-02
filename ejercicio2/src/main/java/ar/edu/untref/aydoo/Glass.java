@@ -5,6 +5,7 @@ public class Glass {
     private int amountOfSugar;
     private boolean coffee = Boolean.FALSE;
     private boolean tea = Boolean.FALSE;
+    private boolean milk = Boolean.FALSE;
 
     public int getAmountOfSugar() {
         return amountOfSugar;
@@ -12,6 +13,18 @@ public class Glass {
 
     public void setAmountOfSugar(int amountOfSugar) {
         this.amountOfSugar = amountOfSugar;
+    }
+
+    public void setCoffee(boolean coffee) {
+        this.coffee = coffee;
+    }
+
+    public void setTea(boolean tea) {
+        this.tea = tea;
+    }
+
+    public void setMilk(boolean milk) {
+        this.milk = milk;
     }
 
     public boolean hasCoffee() {
@@ -24,11 +37,7 @@ public class Glass {
         return this.tea;
     }
 
-    public void setCoffee(boolean coffee) {
-        this.coffee = coffee;
-    }
-
-    public void setTea(boolean tea) {
-        this.tea = tea;
+    public boolean hasMilk() {
+        return this.milk;
     }
 }

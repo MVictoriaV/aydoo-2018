@@ -8,7 +8,7 @@ public class DrinkVendingMachineTest {
     @Test
     public void shouldMakeCoffeeWithMilkWith10Sugar() {
         int amountOfSugar = 10;
-        Glass aGlass = new Glass(new Coffee(), amountOfSugar);
+        Glass aGlass = new Glass();
         DrinkVendingMachine drinkVendingMachine = new DrinkVendingMachine();
 
         drinkVendingMachine.doCoffeeWithMilkWithNSugar(aGlass, amountOfSugar);
@@ -23,7 +23,7 @@ public class DrinkVendingMachineTest {
     public void shouldMakeTeaWithMilkWith0Sugar() {
 
         int amountOfSugar = 0;
-        Glass aGlass = new Glass(new Tea(), amountOfSugar);
+        Glass aGlass = new Glass();
         DrinkVendingMachine drinkVendingMachine = new DrinkVendingMachine();
 
         drinkVendingMachine.doTeaWithMilkWithNSugar(aGlass, amountOfSugar);

@@ -33,4 +33,19 @@ public class DrinkVendingMachineTest {
         Assert.assertFalse(aGlass.hasSugar());
         Assert.assertTrue(aGlass.hasTea());
     }
+
+    @Test
+    public void shouldMakeTeaWithMilkWith3Sugar() {
+
+        int amountOfSugar = 3;
+        Glass aGlass = new Glass();
+        DrinkVendingMachine drinkVendingMachine = new DrinkVendingMachine();
+
+        drinkVendingMachine.doTeaWithMilkWithNSugar(aGlass, amountOfSugar);
+
+        Assert.assertEquals(amountOfSugar, aGlass.getAmountOfSugar());
+        Assert.assertFalse(aGlass.hasCoffee());
+        Assert.assertTrue(aGlass.hasSugar());
+        Assert.assertTrue(aGlass.hasTea());
+    }
 }

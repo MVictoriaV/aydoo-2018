@@ -6,11 +6,12 @@ public class DrinkVendingMachine {
         MakerOfCoffee makerOfCoffee = new MakerOfCoffee();
         makerOfCoffee.loadCoffee(aGlass);
         makerOfCoffee.loadMilk(aGlass);
-        aGlass.setAmountOfSugar(amountOfSugar);
+        new SugarMaker().putSugar(aGlass, amountOfSugar);
     }
 
     public void doTeaWithMilkWithNSugar(Glass aGlass, int amountOfSugar) {
-        aGlass.setAmountOfSugar(amountOfSugar);
-        aGlass.setTea(Boolean.TRUE);
+        MakerOfTeaWithMilk makerOfTeaWithMilk = new MakerOfTeaWithMilk();
+        makerOfTeaWithMilk.load(aGlass);
+        new SugarMaker().putSugar(aGlass, amountOfSugar);
     }
 }

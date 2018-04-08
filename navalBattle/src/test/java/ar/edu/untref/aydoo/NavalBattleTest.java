@@ -16,4 +16,13 @@ public class NavalBattleTest {
 
         Assert.assertTrue(aGrid.hasAnEmbarkation(position));
     }
+
+    @Test
+    public void doesNotHaveEmbarkationInPosition () {
+
+        Grid aGrid = new Grid();
+        Position position = new Position(1, 1);
+
+        Assert.assertFalse(aGrid.hasAnEmbarkation(position));
+    }
 }

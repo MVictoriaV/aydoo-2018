@@ -27,4 +27,8 @@ public class Grid {
     public boolean hasAnEmbarkation(Position position) {
         return !(this.positions[position.getHorizontalPosition()][position.getVerticalPosition()].isWater());
     }
+
+    public String shoot(Position position) {
+        return "sunken";
+    }
 }

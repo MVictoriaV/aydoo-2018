@@ -11,8 +11,4 @@ public class Ship {
     public Integer getLength() {
         return length;
     }
-
-    public String shoot(Position position) {
-        return "sunken";
-    }
 }

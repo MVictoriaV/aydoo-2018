@@ -49,7 +49,7 @@ public class NavalBattleTest {
         Position position1_1 = new Position(0, 1);
         aGrid.putEmbarkation(new Ship(1), position1_1, false);
 
-        String result = aBoat.shoot(position1_1);
+        String result = aGrid.shoot(position1_1);
 
         Assert.assertEquals("sunken", result);
     }

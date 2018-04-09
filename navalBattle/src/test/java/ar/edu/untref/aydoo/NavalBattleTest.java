@@ -9,10 +9,10 @@ public class NavalBattleTest {
     public void putEmbarkationInGrid () {
 
         Grid aGrid = new Grid();
-        Ship aShip = new Ship();
+        Ship aBoat = new Ship(1);
         Position position = new Position(1, 1);
 
-        aGrid.putEmbarkation(aShip, position);
+        aGrid.putEmbarkation(aBoat, position, false);
 
         Assert.assertTrue(aGrid.hasAnEmbarkation(position));
     }
@@ -24,5 +24,18 @@ public class NavalBattleTest {
         Position position = new Position(1, 1);
 
         Assert.assertFalse(aGrid.hasAnEmbarkation(position));
+    }
+
+    @Test
+    public void putAVerticalCruiseInGrid () {
+
+        Grid aGrid = new Grid();
+        Ship aCruise = new Ship(2);
+        Position position = new Position(0, 0);
+
+        aGrid.putEmbarkation(aCruise, position, true);
+
+        Assert.assertTrue(aGrid.hasAnEmbarkation(position));
+        Assert.assertTrue(aGrid.hasAnEmbarkation(new Position(0, 1)));
     }
 }

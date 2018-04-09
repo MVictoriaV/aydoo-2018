@@ -13,8 +13,15 @@ public class Grid {
         }
     }
 
-    public void putEmbarkation(Ship aShip, Position position) {
-        this.positions[position.getHorizontalPosition()][position.getVerticalPosition()].setWater(Boolean.FALSE);
+    public void putEmbarkation(Ship aShip, Position position, Boolean isVertical) {
+        for (int i = 0; i < aShip.getLength(); i++) {
+            if (isVertical) {
+                this.positions[position.getHorizontalPosition()][position.getVerticalPosition()+i].setWater(Boolean.FALSE);
+            } else {
+                this.positions[position.getHorizontalPosition()+i][position.getVerticalPosition()].setWater(Boolean.FALSE);
+            }
+        }
+
     }
 
     public boolean hasAnEmbarkation(Position position) {

@@ -38,4 +38,19 @@ public class NavalBattleTest {
         Assert.assertTrue(aGrid.hasAnEmbarkation(position));
         Assert.assertTrue(aGrid.hasAnEmbarkation(new Position(0, 1)));
     }
+
+    @Test
+    public void shootToABoatShouldReturnSunken () {
+
+        Grid aGrid = new Grid();
+        Ship aBoat = new Ship(1);
+        Position position0_0 = new Position(0, 0);
+        aGrid.putEmbarkation(aBoat, position0_0, false);
+        Position position1_1 = new Position(0, 1);
+        aGrid.putEmbarkation(new Ship(1), position1_1, false);
+
+        String result = aBoat.shoot(position1_1);
+
+        Assert.assertEquals("sunken", result);
+    }
 }

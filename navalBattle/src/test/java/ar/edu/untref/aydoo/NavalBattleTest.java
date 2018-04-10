@@ -52,4 +52,20 @@ public class NavalBattleTest {
 
         Assert.assertEquals(ResultShot.WATER, result);
     }
+
+    @Test
+    public void shootInAPositionWithShipLength1ShouldReturnSunken () {
+
+        Position finalPosition = new Position(2, 2);
+        Grid aGrid = new Grid(finalPosition);
+
+        Position initialPositionShip = new Position(1, 1);
+        ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 1, false);
+
+        aGrid.putShipInGrid(aShipInGrid);
+
+        ResultShot result = aGrid.shoot(new Position(1, 1));
+
+        Assert.assertEquals(ResultShot.SUNKEN, result);
+    }
 }

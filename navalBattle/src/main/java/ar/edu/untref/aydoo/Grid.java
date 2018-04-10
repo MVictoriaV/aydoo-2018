@@ -37,6 +37,15 @@ public class Grid {
     }
 
     public ResultShot shoot(Position position) {
+
+        for (ShipInGrid itemShipInGrid : this.shipsInGrid) {
+            for (Position itemPosition : itemShipInGrid.getPositions()) {
+                if (itemPosition.getHorizontalPosition() == position.getHorizontalPosition() &&
+                    itemPosition.getVerticalPosition() == position.getVerticalPosition()) {
+                    return ResultShot.SUNKEN;
+                }
+            }
+        }
         return ResultShot.WATER;
     }
 }

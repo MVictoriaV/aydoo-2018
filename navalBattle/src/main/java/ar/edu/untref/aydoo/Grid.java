@@ -15,6 +15,7 @@ public class Grid {
     }
 
     public String putShipInGrid(ShipInGrid aShipInGrid) {
+
         String message = MSG_NON_EXISTENT;
         if (aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()
                 || aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()) {
@@ -39,17 +40,30 @@ public class Grid {
 
     public ResultShot shoot(Position position) {
 
-        for (ShipInGrid each : this.shipsInGrid) {
-            Optional<ShipPosition> anOptional = each.getShipPositions().stream().filter(aPosition ->
+        ShipInGrid aShip = this.giveMeAShipInGrid(position);
+
+        if (aShip != null) {
+            Optional<ShipPosition> anOptional = aShip.getShipPositions().stream().filter(aPosition ->
                     ( aPosition.getPosition().getHorizontalPosition().equals(position.getHorizontalPosition())) &&
                             aPosition.getPosition().getVerticalPosition().equals(position.getVerticalPosition())).findFirst();
             if (anOptional.isPresent()) {
-                anOptional.get().setHasShot(Boolean.TRUE);
-                //TODO MVV put compare
+                anOptional.get().shoot();
                 return ResultShot.SUNKEN;
             }
-
         }
         return ResultShot.WATER;
+    }
+
+    private ShipInGrid giveMeAShipInGrid(Position aPosition) {
+
+        for (ShipInGrid itemShipInGrid : this.shipsInGrid) {
+            for (ShipPosition itemShipPosition : itemShipInGrid.getShipPositions()) {
+                if (itemShipPosition.getPosition().getHorizontalPosition() == aPosition.getHorizontalPosition() &&
+                        itemShipPosition.getPosition().getVerticalPosition() == aPosition.getVerticalPosition()) {
+                    return itemShipInGrid;
+                }
+            }
+        }
+        return null;
     }
 }

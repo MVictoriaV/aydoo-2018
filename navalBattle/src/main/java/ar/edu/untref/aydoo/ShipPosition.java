@@ -3,22 +3,18 @@ package ar.edu.untref.aydoo;
 public class ShipPosition {
 
     private Position position;
-    private boolean hasShot = Boolean.FALSE;
-
+    private boolean hasShot;
 
     public ShipPosition (Position position) {
         this.position = position;
+        this.hasShot = Boolean.FALSE;
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public boolean hasShot() {
-        return hasShot;
-    }
-
-    public void setHasShot(boolean hasShot) {
-        this.hasShot = hasShot;
+    public void shoot() {
+        this.hasShot = Boolean.TRUE;
     }
 }

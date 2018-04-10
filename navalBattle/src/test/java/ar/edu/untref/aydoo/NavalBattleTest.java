@@ -41,4 +41,15 @@ public class NavalBattleTest {
 
         Assert.assertEquals("non-existent position", result);
     }
+
+    @Test
+    public void shootInAPositionWithoutShipShouldReturnWater () {
+
+        Position finalPosition = new Position(2, 2);
+        Grid aGrid = new Grid(finalPosition);
+
+        ResultShot result = aGrid.shoot(new Position(0, 1));
+
+        Assert.assertEquals(ResultShot.WATER, result);
+    }
 }

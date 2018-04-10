@@ -35,4 +35,8 @@ public class Grid {
         }
         return Boolean.FALSE;
     }
+
+    public ResultShot shoot(Position position) {
+        return ResultShot.WATER;
+    }
 }

@@ -2,6 +2,7 @@ package ar.edu.untref.aydoo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Grid {
 
@@ -15,8 +16,8 @@ public class Grid {
 
     public String putShipInGrid(ShipInGrid aShipInGrid) {
         String message = MSG_NON_EXISTENT;
-        if (aShipInGrid.getPositions().get(0).getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()
-                || aShipInGrid.getPositions().get(0).getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()) {
+        if (aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()
+                || aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()) {
             shipsInGrid.add(aShipInGrid);
             message = "INSERT OK";
         }
@@ -26,9 +27,9 @@ public class Grid {
     public boolean hasAShip(Position position) {
 
         for (ShipInGrid itemShipInGrid : this.shipsInGrid) {
-            for (Position itemPosition : itemShipInGrid.getPositions()) {
-                if (itemPosition.getHorizontalPosition() == position.getHorizontalPosition() &&
-                    itemPosition.getVerticalPosition() == position.getVerticalPosition()) {
+            for (ShipPosition itemShipPosition : itemShipInGrid.getShipPositions()) {
+                if (itemShipPosition.getPosition().getHorizontalPosition() == position.getHorizontalPosition() &&
+                        itemShipPosition.getPosition().getVerticalPosition() == position.getVerticalPosition()) {
                     return Boolean.TRUE;
                 }
             }
@@ -38,13 +39,15 @@ public class Grid {
 
     public ResultShot shoot(Position position) {
 
-        for (ShipInGrid itemShipInGrid : this.shipsInGrid) {
-            for (Position itemPosition : itemShipInGrid.getPositions()) {
-                if (itemPosition.getHorizontalPosition() == position.getHorizontalPosition() &&
-                    itemPosition.getVerticalPosition() == position.getVerticalPosition()) {
-                    return ResultShot.SUNKEN;
-                }
+        for (ShipInGrid each : this.shipsInGrid) {
+            Optional<ShipPosition> anOptional = each.getShipPositions().stream().filter(aPosition ->
+                    ( aPosition.getPosition().getHorizontalPosition().equals(position.getHorizontalPosition())) &&
+                            aPosition.getPosition().getVerticalPosition().equals(position.getVerticalPosition())).findFirst();
+            if (anOptional.isPresent()) {
+                anOptional.get().setHasShot(Boolean.TRUE);
+                return ResultShot.SUNKEN;
             }
+
         }
         return ResultShot.WATER;
     }

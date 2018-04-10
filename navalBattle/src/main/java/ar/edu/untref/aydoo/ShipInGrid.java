@@ -6,21 +6,23 @@ import java.util.List;
 public class ShipInGrid {
 
     private Ship aShip;
-    private List<Position> positions = new ArrayList<>();
+    private List<ShipPosition> shipPositions = new ArrayList<>();
 
     public ShipInGrid(Position initialPosition, Integer lengthShip, boolean isVertical) {
         this.aShip = new Ship(lengthShip);
         for (int i = 0; i < this.aShip.getLength(); i++) {
+            ShipPosition shipPosition;
             if (isVertical) {
-                positions.add(new Position(initialPosition.getHorizontalPosition(), initialPosition.getVerticalPosition() + i));
+                shipPosition = new ShipPosition(new Position(initialPosition.getHorizontalPosition(), initialPosition.getVerticalPosition() + i));
 
             } else {
-                positions.add(new Position(initialPosition.getHorizontalPosition() + i, initialPosition.getVerticalPosition()));
+                shipPosition = new ShipPosition(new Position(initialPosition.getHorizontalPosition() + i, initialPosition.getVerticalPosition()));
             }
+            shipPositions.add(shipPosition);
         }
     }
 
-    public List<Position> getPositions() {
-        return positions;
+    public List<ShipPosition> getShipPositions() {
+        return this.shipPositions;
     }
 }

@@ -45,6 +45,7 @@ public class Grid {
                             aPosition.getPosition().getVerticalPosition().equals(position.getVerticalPosition())).findFirst();
             if (anOptional.isPresent()) {
                 anOptional.get().setHasShot(Boolean.TRUE);
+                //TODO MVV put compare
                 return ResultShot.SUNKEN;
             }
 

@@ -7,13 +7,20 @@ public class Grid {
 
     private Position finalPosition;
     private List<ShipInGrid> shipsInGrid = new ArrayList<>();
+    private final static String MSG_NON_EXISTENT = "non-existent position";
 
     public Grid (Position finalPosition) {
         this.finalPosition = finalPosition;
     }
 
-    public void putShipInGrid(ShipInGrid aShipInGrid) {
-        shipsInGrid.add(aShipInGrid);
+    public String putShipInGrid(ShipInGrid aShipInGrid) {
+        String message = MSG_NON_EXISTENT;
+        if (aShipInGrid.getPositions().get(0).getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()
+                || aShipInGrid.getPositions().get(0).getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()) {
+            shipsInGrid.add(aShipInGrid);
+            message = "INSERT OK";
+        }
+        return message;
     }
 
     public boolean hasAShip(Position position) {

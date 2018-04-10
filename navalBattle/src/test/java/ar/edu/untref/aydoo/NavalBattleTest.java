@@ -25,11 +25,20 @@ public class NavalBattleTest {
         Position finalPosition = new Position(2, 2);
         Grid aGrid = new Grid(finalPosition);
 
-        Position initialPositionShip = new Position(0, 0);
+        Assert.assertFalse(aGrid.hasAShip(new Position(0, 1)));
+    }
+
+    @Test
+    public void putAShipInANotExistingPositionShouldReturnAMsg () {
+
+        Position finalPosition = new Position(2, 2);
+        Grid aGrid = new Grid(finalPosition);
+
+        Position initialPositionShip = new Position(3, 0);
         ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 1, false);
 
-        aGrid.putShipInGrid(aShipInGrid);
+        String result = aGrid.putShipInGrid(aShipInGrid);
 
-        Assert.assertFalse(aGrid.hasAShip(new Position(0, 1)));
+        Assert.assertEquals("non-existent position", result);
     }
 }

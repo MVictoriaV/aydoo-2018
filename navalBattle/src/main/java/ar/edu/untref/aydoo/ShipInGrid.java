@@ -6,7 +6,6 @@ import java.util.List;
 public class ShipInGrid {
 
     private Ship aShip;
-
     private List<Position> positions = new ArrayList<>();
 
     public ShipInGrid(Position initialPosition, Integer lengthShip, boolean isVertical) {
@@ -19,5 +18,9 @@ public class ShipInGrid {
                 positions.add(new Position(initialPosition.getHorizontalPosition() + i, initialPosition.getVerticalPosition()));
             }
         }
+    }
+
+    public List<Position> getPositions() {
+        return positions;
     }
 }

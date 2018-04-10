@@ -18,4 +18,18 @@ public class NavalBattleTest {
 
         Assert.assertTrue(aGrid.hasAShip(new Position(0, 0)));
     }
+
+    @Test
+    public void doesNotHaveAShipInPositionX0AndY1 () {
+
+        Position finalPosition = new Position(2, 2);
+        Grid aGrid = new Grid(finalPosition);
+
+        Position initialPositionShip = new Position(0, 0);
+        ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 1, false);
+
+        aGrid.putShipInGrid(aShipInGrid);
+
+        Assert.assertFalse(aGrid.hasAShip(new Position(0, 1)));
+    }
 }

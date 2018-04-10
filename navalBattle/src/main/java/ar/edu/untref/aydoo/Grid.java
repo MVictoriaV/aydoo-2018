@@ -17,6 +17,15 @@ public class Grid {
     }
 
     public boolean hasAShip(Position position) {
-        return Boolean.TRUE;
+
+        for (ShipInGrid itemShipInGrid : this.shipsInGrid) {
+            for (Position itemPosition : itemShipInGrid.getPositions()) {
+                if (itemPosition.getHorizontalPosition() == position.getHorizontalPosition() &&
+                    itemPosition.getVerticalPosition() == position.getVerticalPosition()) {
+                    return Boolean.TRUE;
+                }
+            }
+        }
+        return Boolean.FALSE;
     }
 }

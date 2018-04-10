@@ -68,4 +68,20 @@ public class NavalBattleTest {
 
         Assert.assertEquals(ResultShot.SUNKEN, result);
     }
+
+    @Test
+    public void shootInAPositionWithShipLength2ShouldReturnTouched () {
+
+        Position finalPosition = new Position(2, 2);
+        Grid aGrid = new Grid(finalPosition);
+
+        Position initialPositionShip = new Position(0, 0);
+        ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 2, true);
+
+        aGrid.putShipInGrid(aShipInGrid);
+
+        ResultShot result = aGrid.shoot(new Position(0, 1));
+
+        Assert.assertEquals(ResultShot.TOUCHED, result);
+    }
 }

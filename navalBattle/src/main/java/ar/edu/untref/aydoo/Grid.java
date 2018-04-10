@@ -48,8 +48,8 @@ public class Grid {
                             aPosition.getPosition().getVerticalPosition().equals(position.getVerticalPosition())).findFirst();
             if (anOptional.isPresent()) {
                 anOptional.get().shoot();
-                return ResultShot.SUNKEN;
             }
+            return aShip.getState();
         }
         return ResultShot.WATER;
     }

@@ -84,4 +84,20 @@ public class NavalBattleTest {
 
         Assert.assertEquals(ResultShot.TOUCHED, result);
     }
+
+    @Test
+    public void put2ShipsInASamePositionReturnMsgCanNotPut () {
+
+        Position finalPosition = new Position(2, 2);
+        Grid aGrid = new Grid(finalPosition);
+
+        Position initialPositionShip = new Position(0, 0);
+        ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 1, false);
+        ShipInGrid otherShipInGrid = new ShipInGrid(new Position(0, 0), 1, false);
+
+        aGrid.putShipInGrid(aShipInGrid);
+        String result = aGrid.putShipInGrid(otherShipInGrid);
+
+        Assert.assertEquals("Sorry but there is already a boat in that position", result);
+    }
 }

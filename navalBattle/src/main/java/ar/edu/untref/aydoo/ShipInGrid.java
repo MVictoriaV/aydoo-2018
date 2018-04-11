@@ -2,6 +2,7 @@ package ar.edu.untref.aydoo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ShipInGrid {
 
@@ -33,5 +34,20 @@ public class ShipInGrid {
             return ResultShot.SUNKEN;
         }
         return ResultShot.TOUCHED;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (!(o instanceof ShipInGrid)) {
+            return Boolean.FALSE;
+        }
+
+        ShipInGrid newShip = (ShipInGrid) o;
+
+        Optional<ShipPosition> anOptional = newShip.shipPositions.stream().filter(aPosition ->
+                ( aPosition.getPosition().getHorizontalPosition().equals(this.getShipPositions().get(0).getPosition().getHorizontalPosition())) &&
+                        aPosition.getPosition().getVerticalPosition().equals(this.getShipPositions().get(0).getPosition().getVerticalPosition())).findFirst();
+        return anOptional.isPresent();
     }
 }

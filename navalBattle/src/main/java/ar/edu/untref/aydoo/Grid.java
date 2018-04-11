@@ -17,10 +17,17 @@ public class Grid {
     public String putShipInGrid(ShipInGrid aShipInGrid) {
 
         String message = MSG_NON_EXISTENT;
+
         if (aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()
                 || aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()) {
-            shipsInGrid.add(aShipInGrid);
-            message = "INSERT OK";
+
+            Optional result = this.shipsInGrid.stream().filter(a -> a.equals(aShipInGrid)).findFirst();
+            if (result.isPresent()) {
+                message = "Sorry but there is already a boat in that position";
+            } else {
+                shipsInGrid.add(aShipInGrid);
+                message = "INSERT OK";
+            }
         }
         return message;
     }

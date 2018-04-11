@@ -8,7 +8,6 @@ public class Grid {
 
     private Position finalPosition;
     private List<ShipInGrid> shipsInGrid = new ArrayList<>();
-    private final static String MSG_NON_EXISTENT = "non-existent position";
 
     public Grid (Position finalPosition) {
         this.finalPosition = finalPosition;
@@ -16,17 +15,17 @@ public class Grid {
 
     public String putShipInGrid(ShipInGrid aShipInGrid) {
 
-        String message = MSG_NON_EXISTENT;
+        String message = Message.POSITION_NON_EXISTENT;
 
         if (aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()
                 || aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()) {
 
             Optional result = this.shipsInGrid.stream().filter(a -> a.equals(aShipInGrid)).findFirst();
             if (result.isPresent()) {
-                message = "Sorry but there is already a boat in that position";
+                message = Message.SHIP_EXISTENT_IN_POSITION;
             } else {
                 shipsInGrid.add(aShipInGrid);
-                message = "INSERT OK";
+                message = Message.INSERT_OK;
             }
         }
         return message;

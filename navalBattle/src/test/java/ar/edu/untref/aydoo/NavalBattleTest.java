@@ -39,7 +39,7 @@ public class NavalBattleTest {
 
         String result = aGrid.putShipInGrid(aShipInGrid);
 
-        Assert.assertEquals("non-existent position", result);
+        Assert.assertEquals(Message.POSITION_NON_EXISTENT, result);
     }
 
     @Test
@@ -98,6 +98,6 @@ public class NavalBattleTest {
         aGrid.putShipInGrid(aShipInGrid);
         String result = aGrid.putShipInGrid(otherShipInGrid);
 
-        Assert.assertEquals("Sorry but there is already a boat in that position", result);
+        Assert.assertEquals(Message.SHIP_EXISTENT_IN_POSITION, result);
     }
 }

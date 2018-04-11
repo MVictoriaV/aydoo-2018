@@ -7,6 +7,7 @@ import java.util.Optional;
 public class ShipInGrid {
 
     private Ship aShip;
+    private ResultShot state;
     private List<ShipPosition> shipPositions = new ArrayList<>();
 
 
@@ -29,11 +30,7 @@ public class ShipInGrid {
     }
 
     public ResultShot getState () {
-        long result = this.shipPositions.stream().filter(x -> x.hasShot()).count();
-        if (result == this.aShip.getLength()) {
-            return ResultShot.SUNKEN;
-        }
-        return ResultShot.TOUCHED;
+        return this.state;
     }
 
     @Override
@@ -49,5 +46,20 @@ public class ShipInGrid {
                 ( aPosition.getPosition().getHorizontalPosition().equals(this.getShipPositions().get(0).getPosition().getHorizontalPosition())) &&
                         aPosition.getPosition().getVerticalPosition().equals(this.getShipPositions().get(0).getPosition().getVerticalPosition())).findFirst();
         return anOptional.isPresent();
+    }
+
+    public void shootInPosition(Position position) {
+        Optional<ShipPosition> anOptional = this.getShipPositions().stream().filter(aPosition ->
+                ( aPosition.getPosition().getHorizontalPosition().equals(position.getHorizontalPosition())) &&
+                        aPosition.getPosition().getVerticalPosition().equals(position.getVerticalPosition())).findFirst();
+        if (anOptional.isPresent()) {
+            anOptional.get().receiveAShot();
+        }
+        this.actionState();
+    }
+
+    private void actionState () {
+        long result = this.shipPositions.stream().filter(x -> x.hasShot()).count();
+        this.state = (result == this.aShip.getLength() ? ResultShot.SUNKEN : ResultShot.TOUCHED);
     }
 }

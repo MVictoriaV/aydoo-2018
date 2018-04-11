@@ -24,7 +24,7 @@ public class Grid {
             if (result.isPresent()) {
                 message = Message.SHIP_EXISTENT_IN_POSITION;
             } else {
-                shipsInGrid.add(aShipInGrid);
+                this.shipsInGrid.add(aShipInGrid);
                 message = Message.INSERT_OK;
             }
         }
@@ -40,12 +40,7 @@ public class Grid {
         ShipInGrid aShip = this.getShipInPosition(position);
 
         if (aShip != null) {
-            Optional<ShipPosition> anOptional = aShip.getShipPositions().stream().filter(aPosition ->
-                    ( aPosition.getPosition().getHorizontalPosition().equals(position.getHorizontalPosition())) &&
-                            aPosition.getPosition().getVerticalPosition().equals(position.getVerticalPosition())).findFirst();
-            if (anOptional.isPresent()) {
-                anOptional.get().shoot();
-            }
+            aShip.shootInPosition(position);
             return aShip.getState();
         }
         return ResultShot.WATER;

@@ -14,7 +14,7 @@ public class ShipPosition {
         return position;
     }
 
-    public void shoot() {
+    public void receiveAShot() {
         this.hasShot = Boolean.TRUE;
     }
 

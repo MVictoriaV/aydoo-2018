@@ -87,4 +87,13 @@ public class FibonacciTest {
 
         Assert.assertEquals("HORIZONTAL", result);
     }
+
+    @Test
+    public void printSuccessionHorizontal() {
+        Fibonacci fibonacci = new Fibonacci(4);
+
+        String result = fibonacci.print();
+
+        Assert.assertEquals("print horizontal", result);
+    }
 }

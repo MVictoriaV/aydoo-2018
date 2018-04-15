@@ -36,4 +36,9 @@ public class Fibonacci implements SuperFibonacci {
     public String getDescription() {
         return "HORIZONTAL";
     }
+
+    @Override
+    public String print() {
+        return "print horizontal";
+    }
 }

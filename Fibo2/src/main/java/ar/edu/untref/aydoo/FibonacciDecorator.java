@@ -12,4 +12,9 @@ public class FibonacciDecorator implements SuperFibonacci {
     public String getDescription() {
         return this.superFibonacci.getDescription();
     }
+
+    @Override
+    public String print() {
+        return this.superFibonacci.print();
+    }
 }

@@ -1,7 +1,6 @@
 package ar.edu.untref.aydoo;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -58,7 +57,7 @@ public class FibonacciTest {
         Assert.assertArrayEquals(expectedsValues, actualsValues);
     }
 
-    @Ignore@Test
+    @Test
     public void getSuccessionWithLimit4ShouldReturn4ValuesInverted() {
         Fibonacci fibonacci = new Fibonacci(4);
         List<Integer> results = fibonacci.invertSuccession();
@@ -67,7 +66,7 @@ public class FibonacciTest {
         for (int i = 0; i < results.size(); i++) {
             actualsValues[i] = results.get(i);
         }
-        int[] expectedsValues = new int[]{1, 1, 0};
+        int[] expectedsValues = new int[]{2, 1, 1, 0};
         Assert.assertArrayEquals(expectedsValues, actualsValues);
     }
 }

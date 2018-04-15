@@ -27,9 +27,9 @@ public class Fibonacci {
 
     public List<Integer> invertSuccession () {
         List<Integer> listInverted = new ArrayList<>();
-        listInverted.add(1);
-        listInverted.add(1);
-        listInverted.add(0);
+        for (int i = (succession.size()-1); i >= 0; i--) {
+            listInverted.add(succession.get(i));
+        }
         return listInverted;
     }
 }

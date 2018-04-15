@@ -32,4 +32,8 @@ public class Fibonacci {
         }
         return listInverted;
     }
+
+    public String getDescription() {
+        return "VERTICAL";
+    }
 }

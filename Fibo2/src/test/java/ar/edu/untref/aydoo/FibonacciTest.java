@@ -69,4 +69,13 @@ public class FibonacciTest {
         int[] expectedsValues = new int[]{2, 1, 1, 0};
         Assert.assertArrayEquals(expectedsValues, actualsValues);
     }
+
+    @Test
+    public void printSuccessionWithLimit4InShapeVerticalShouldReturnVertical() {
+        Fibonacci fibonacci = new Fibonacci(4);
+
+        String result = fibonacci.getDescription();
+
+        Assert.assertEquals("VERTICAL", result);
+    }
 }

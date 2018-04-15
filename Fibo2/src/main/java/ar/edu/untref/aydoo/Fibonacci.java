@@ -41,6 +41,10 @@ public class Fibonacci implements SuperFibonacci {
 
     @Override
     public String print() {
-        return "print horizontal";
+        StringBuffer out = new StringBuffer();
+        for (Integer eachNumber : succession) {
+            out.append(" ").append(eachNumber);
+        }
+        return out.toString();
     }
 }

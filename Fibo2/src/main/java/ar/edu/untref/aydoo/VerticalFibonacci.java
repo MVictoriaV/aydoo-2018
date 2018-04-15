@@ -13,6 +13,10 @@ public class VerticalFibonacci extends FibonacciDecorator {
 
     @Override
     public String print() {
-        return "print vertical";
+        StringBuffer out = new StringBuffer();
+        for (Integer eachNumber : super.getSuccession()) {
+            out.append("\n").append(eachNumber);
+        }
+        return out.toString();
     }
 }

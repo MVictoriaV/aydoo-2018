@@ -96,4 +96,13 @@ public class FibonacciTest {
 
         Assert.assertEquals("print horizontal", result);
     }
+
+    @Test
+    public void printSuccessionVertical() {
+        Fibonacci fibonacci = new Fibonacci(4);
+        SuperFibonacci verticalFibonacci = new VerticalFibonacci(fibonacci);
+        String result = verticalFibonacci.print();
+
+        Assert.assertEquals("print vertical", result);
+    }
 }

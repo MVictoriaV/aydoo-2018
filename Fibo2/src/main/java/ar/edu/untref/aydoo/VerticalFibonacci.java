@@ -10,4 +10,9 @@ public class VerticalFibonacci extends FibonacciDecorator {
     public String getDescription() {
         return "VERTICAL";
     }
+
+    @Override
+    public String print() {
+        return "print vertical";
+    }
 }

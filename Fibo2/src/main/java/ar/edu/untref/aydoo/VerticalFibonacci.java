@@ -13,9 +13,10 @@ public class VerticalFibonacci extends FibonacciDecorator {
 
     @Override
     public String print() {
-        StringBuffer out = new StringBuffer();
+        StringBuffer out = new StringBuffer("fibo<").append(super.getSuccession().size()).append(">: ");
         for (Integer eachNumber : super.getSuccession()) {
-            out.append("\n").append(eachNumber);
+            out.append("\n\n");
+            out.append(eachNumber);
         }
         return out.toString();
     }

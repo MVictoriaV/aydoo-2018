@@ -43,7 +43,7 @@ public class Fibonacci implements SuperFibonacci {
 
     @Override
     public String print() {
-        StringBuffer out = new StringBuffer();
+        StringBuffer out = new StringBuffer("fibo<").append(succession.size()).append(">: ");
         for (Integer eachNumber : succession) {
             out.append(" ").append(eachNumber);
         }

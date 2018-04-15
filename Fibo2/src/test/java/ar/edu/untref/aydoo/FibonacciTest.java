@@ -1,6 +1,7 @@
 package ar.edu.untref.aydoo;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -70,12 +71,21 @@ public class FibonacciTest {
         Assert.assertArrayEquals(expectedsValues, actualsValues);
     }
 
-    @Test
+    @Ignore@Test
     public void printSuccessionWithLimit4InShapeVerticalShouldReturnVertical() {
         Fibonacci fibonacci = new Fibonacci(4);
 
         String result = fibonacci.getDescription();
 
         Assert.assertEquals("VERTICAL", result);
+    }
+
+    @Test
+    public void printSuccessionWithLimit4InShapeHorizontalShouldReturnHorizontal() {
+        Fibonacci fibonacci = new Fibonacci(4);
+
+        String result = fibonacci.getDescription();
+
+        Assert.assertEquals("HORIZONTAL", result);
     }
 }

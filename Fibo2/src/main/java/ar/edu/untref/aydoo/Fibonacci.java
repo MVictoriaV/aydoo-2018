@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
-public class Fibonacci {
+public class Fibonacci implements SuperFibonacci {
 
     private List<Integer> succession;
 
@@ -34,6 +34,6 @@ public class Fibonacci {
     }
 
     public String getDescription() {
-        return "VERTICAL";
+        return "HORIZONTAL";
     }
 }

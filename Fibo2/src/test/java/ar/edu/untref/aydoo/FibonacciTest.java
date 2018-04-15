@@ -36,4 +36,17 @@ public class FibonacciTest {
         List<Integer> results = Fibonacci.getSuccession(3);
         Assert.assertNotNull(results);
     }
+
+    @Test
+    public void getSuccessionWithLimit3ShouldReturn3ValuesInverted() {
+        Fibonacci fibonacci = new Fibonacci();
+        List<Integer> results = fibonacci.invertSuccession();
+
+        int[] actualsValues = new int[results.size()];
+        for (int i = 0; i < results.size(); i++) {
+            actualsValues[i] = results.get(i);
+        }
+        int[] expectedsValues = new int[]{1, 1, 0};
+        Assert.assertArrayEquals(expectedsValues, actualsValues);
+    }
 }

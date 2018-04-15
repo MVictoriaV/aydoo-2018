@@ -9,7 +9,8 @@ public class Program {
 
     public static void main(String[] args) {
         int limitSuccession = Integer.valueOf(args[0]);
-        Fibonacci fibonacci = new Fibonacci(limitSuccession);
+        Boolean isInverted = false;
+        Fibonacci fibonacci = new Fibonacci(limitSuccession, isInverted);
         List<Integer> results = fibonacci.getSuccession();
 
         StringBuffer sb = new StringBuffer("fibo<").append(limitSuccession).append(">: ");

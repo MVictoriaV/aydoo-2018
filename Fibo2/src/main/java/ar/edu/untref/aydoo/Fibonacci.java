@@ -10,9 +10,11 @@ public class Fibonacci implements SuperFibonacci {
 
     private List<Integer> succession;
 
-    public Fibonacci(Integer limitSuccession) {
+    public Fibonacci(Integer limitSuccession, Boolean isInverted) {
         succession = this.calculateSuccession(limitSuccession);
-
+        if(isInverted) {
+            succession = this.invertSuccession();
+        }
     }
 
     @Override
@@ -27,7 +29,7 @@ public class Fibonacci implements SuperFibonacci {
                 .collect(toList());
     }
 
-    public List<Integer> invertSuccession () {
+    private List<Integer> invertSuccession () {
         List<Integer> listInverted = new ArrayList<>();
         for (int i = (succession.size()-1); i >= 0; i--) {
             listInverted.add(succession.get(i));

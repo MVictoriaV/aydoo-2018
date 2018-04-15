@@ -11,7 +11,8 @@ public class FibonacciTest {
     @Test
     public void getSuccessionShouldReturn5Values() {
         Integer limitSuccession = 5;
-        Fibonacci fibonacci = new Fibonacci(limitSuccession);
+        Boolean isInverted = false;
+        Fibonacci fibonacci = new Fibonacci(limitSuccession, isInverted);
         List<Integer> results = fibonacci.getSuccession();
 
         int[] actualsValues = new int[results.size()];
@@ -25,7 +26,8 @@ public class FibonacciTest {
     @Test
     public void getSuccessionShouldReturn8Values() {
         Integer limitSuccession = 8;
-        Fibonacci fibonacci = new Fibonacci(limitSuccession);
+        Boolean isInverted = false;
+        Fibonacci fibonacci = new Fibonacci(limitSuccession, isInverted);
         List<Integer> results = fibonacci.getSuccession();
 
         int[] actualsValues = new int[results.size()];
@@ -39,7 +41,8 @@ public class FibonacciTest {
     @Test
     public void successionIsNotNull() {
         Integer limitSuccession = 5;
-        Fibonacci fibonacci = new Fibonacci(limitSuccession);
+        Boolean isInverted = false;
+        Fibonacci fibonacci = new Fibonacci(limitSuccession, isInverted);
         List<Integer> results = fibonacci.getSuccession();
 
         Assert.assertNotNull(results);
@@ -47,8 +50,9 @@ public class FibonacciTest {
 
     @Test
     public void getSuccessionWithLimit3ShouldReturn3ValuesInverted() {
-        Fibonacci fibonacci = new Fibonacci(3);
-        List<Integer> results = fibonacci.invertSuccession();
+        Boolean isInverted = true;
+        Fibonacci fibonacci = new Fibonacci(3, isInverted);
+        List<Integer> results = fibonacci.getSuccession();
 
         int[] actualsValues = new int[results.size()];
         for (int i = 0; i < results.size(); i++) {
@@ -60,8 +64,9 @@ public class FibonacciTest {
 
     @Test
     public void getSuccessionWithLimit4ShouldReturn4ValuesInverted() {
-        Fibonacci fibonacci = new Fibonacci(4);
-        List<Integer> results = fibonacci.invertSuccession();
+        Boolean isInverted = true;
+        Fibonacci fibonacci = new Fibonacci(4, isInverted);
+        List<Integer> results = fibonacci.getSuccession();
 
         int[] actualsValues = new int[results.size()];
         for (int i = 0; i < results.size(); i++) {
@@ -73,7 +78,8 @@ public class FibonacciTest {
 
     @Test
     public void printSuccessionWithLimit4InShapeVerticalShouldReturnVertical() {
-        Fibonacci fibonacci = new Fibonacci(4);
+        Boolean isInverted = false;
+        Fibonacci fibonacci = new Fibonacci(4, isInverted);
         SuperFibonacci verticalFibonacci = new VerticalFibonacci(fibonacci);
         String result = verticalFibonacci.getDescription();
 
@@ -82,7 +88,8 @@ public class FibonacciTest {
 
     @Test
     public void printSuccessionWithLimit4InShapeHorizontalShouldReturnHorizontal() {
-        Fibonacci fibonacci = new Fibonacci(4);
+        Boolean isInverted = false;
+        Fibonacci fibonacci = new Fibonacci(4, isInverted);
 
         String result = fibonacci.getDescription();
 
@@ -91,7 +98,8 @@ public class FibonacciTest {
 
     @Ignore@Test
     public void printSuccessionHorizontal() {
-        Fibonacci fibonacci = new Fibonacci(4);
+        Boolean isInverted = false;
+        Fibonacci fibonacci = new Fibonacci(4, isInverted);
 
         String result = fibonacci.print();
 
@@ -100,7 +108,8 @@ public class FibonacciTest {
 
     @Ignore@Test
     public void printSuccessionVertical() {
-        Fibonacci fibonacci = new Fibonacci(4);
+        Boolean isInverted = false;
+        Fibonacci fibonacci = new Fibonacci(4, isInverted);
         SuperFibonacci verticalFibonacci = new VerticalFibonacci(fibonacci);
         String result = verticalFibonacci.print();
 

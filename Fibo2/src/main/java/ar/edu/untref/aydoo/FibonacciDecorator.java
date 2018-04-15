@@ -1,5 +1,7 @@
 package ar.edu.untref.aydoo;
 
+import java.util.List;
+
 public class FibonacciDecorator implements SuperFibonacci {
 
     protected SuperFibonacci superFibonacci;
@@ -16,5 +18,10 @@ public class FibonacciDecorator implements SuperFibonacci {
     @Override
     public String print() {
         return this.superFibonacci.print();
+    }
+
+    @Override
+    public List<Integer> getSuccession() {
+        return this.superFibonacci.getSuccession();
     }
 }

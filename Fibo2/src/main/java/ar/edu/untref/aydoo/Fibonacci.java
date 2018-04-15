@@ -12,8 +12,10 @@ public class Fibonacci implements SuperFibonacci {
 
     public Fibonacci(Integer limitSuccession) {
         succession = this.calculateSuccession(limitSuccession);
+
     }
 
+    @Override
     public List<Integer> getSuccession() {
         return succession;
     }

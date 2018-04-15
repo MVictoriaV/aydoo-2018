@@ -1,6 +1,7 @@
 package ar.edu.untref.aydoo;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -9,7 +10,9 @@ public class FibonacciTest {
 
     @Test
     public void getSuccessionShouldReturn5Values() {
-        List<Integer> results = Fibonacci.getSuccession(5);
+        Integer limitSuccession = 5;
+        Fibonacci fibonacci = new Fibonacci(limitSuccession);
+        List<Integer> results = fibonacci.getSuccession();
 
         int[] actualsValues = new int[results.size()];
         for (int i = 0; i < results.size(); i++) {
@@ -21,7 +24,9 @@ public class FibonacciTest {
 
     @Test
     public void getSuccessionShouldReturn8Values() {
-        List<Integer> results = Fibonacci.getSuccession(8);
+        Integer limitSuccession = 8;
+        Fibonacci fibonacci = new Fibonacci(limitSuccession);
+        List<Integer> results = fibonacci.getSuccession();
 
         int[] actualsValues = new int[results.size()];
         for (int i = 0; i < results.size(); i++) {
@@ -33,13 +38,29 @@ public class FibonacciTest {
 
     @Test
     public void successionIsNotNull() {
-        List<Integer> results = Fibonacci.getSuccession(3);
+        Integer limitSuccession = 5;
+        Fibonacci fibonacci = new Fibonacci(limitSuccession);
+        List<Integer> results = fibonacci.getSuccession();
+
         Assert.assertNotNull(results);
     }
 
     @Test
     public void getSuccessionWithLimit3ShouldReturn3ValuesInverted() {
-        Fibonacci fibonacci = new Fibonacci();
+        Fibonacci fibonacci = new Fibonacci(3);
+        List<Integer> results = fibonacci.invertSuccession();
+
+        int[] actualsValues = new int[results.size()];
+        for (int i = 0; i < results.size(); i++) {
+            actualsValues[i] = results.get(i);
+        }
+        int[] expectedsValues = new int[]{1, 1, 0};
+        Assert.assertArrayEquals(expectedsValues, actualsValues);
+    }
+
+    @Ignore@Test
+    public void getSuccessionWithLimit4ShouldReturn4ValuesInverted() {
+        Fibonacci fibonacci = new Fibonacci(4);
         List<Integer> results = fibonacci.invertSuccession();
 
         int[] actualsValues = new int[results.size()];

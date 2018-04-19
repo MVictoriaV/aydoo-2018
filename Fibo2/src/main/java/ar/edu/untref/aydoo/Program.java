@@ -33,7 +33,7 @@ public class Program {
                 System.out.println(result);
             }
         } else {
-            System.out.println("Options do not valid.");
+            System.out.println("Opciones no validas.");
         }
     }
 

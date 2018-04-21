@@ -23,8 +23,6 @@ public class ShipPosition {
     }
 
     public Boolean samePosition(ShipPosition otherShipPosition) {
-        Integer verticalPosition = otherShipPosition.getPosition().getVerticalPosition();
-        Integer horizontalPosition = otherShipPosition.getPosition().getHorizontalPosition();
-        return this.position.getVerticalPosition() == verticalPosition && this.position.getHorizontalPosition() == horizontalPosition;
+        return this.position.isEquals(otherShipPosition.getPosition());
     }
 }

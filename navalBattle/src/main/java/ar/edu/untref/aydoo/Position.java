@@ -17,4 +17,8 @@ public class Position {
     public Integer getVerticalPosition() {
         return verticalPosition;
     }
+
+    public boolean isEquals(Position aPosition) {
+        return verticalPosition == aPosition.getVerticalPosition() && horizontalPosition == aPosition.getHorizontalPosition();
+    }
 }

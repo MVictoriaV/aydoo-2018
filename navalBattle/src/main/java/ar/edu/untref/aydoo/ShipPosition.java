@@ -21,4 +21,8 @@ public class ShipPosition {
     public boolean hasShot () {
         return this.hasShot;
     }
+
+    public Boolean samePosition(ShipPosition otherShipPosition) {
+        return true;
+    }
 }

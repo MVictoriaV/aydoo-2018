@@ -36,6 +36,17 @@ public class ShipPositionTest {
         Assert.assertTrue(result);
     }
 
+    @Test
+    public void create2ShipPositionsInDifferentPositionAndCompare() {
+
+        ShipPosition aShipPosition = this.createAShipPosition(2, 4);
+        ShipPosition otherShipPosition = this.createAShipPosition(3, 2);
+
+        Boolean result = aShipPosition.samePosition(otherShipPosition);
+
+        Assert.assertFalse(result);
+    }
+
     private ShipPosition createAShipPosition(Integer horizontalPosition, Integer verticalPosition){
         Position aPosition = new Position(horizontalPosition, verticalPosition);
         return new ShipPosition(aPosition);

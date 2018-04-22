@@ -13,7 +13,16 @@ public class ShipInGridTest {
         shipInGrid.shootInPosition(new Position(1, 2));
 
         Assert.assertEquals(ResultShot.SUNKEN, shipInGrid.getState());
+    }
 
+    @Test
+    public void shootInPositionToShipOf2LengthShouldBeReturnTOUCHED() {
+
+        ShipInGrid shipInGrid = this.createAShipInGrid(1, 2, 2);
+
+        shipInGrid.shootInPosition(new Position(1, 2));
+
+        Assert.assertEquals(ResultShot.TOUCHED, shipInGrid.getState());
     }
 
     private ShipInGrid createAShipInGrid(Integer horizontalPosition, Integer verticalPosition, Integer lengthShip){

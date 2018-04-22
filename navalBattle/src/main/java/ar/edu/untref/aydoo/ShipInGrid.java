@@ -49,9 +49,8 @@ public class ShipInGrid {
     }
 
     public void shootInPosition(Position position) {
-        Optional<ShipPosition> anOptional = this.getShipPositions().stream().filter(aPosition ->
-                ( aPosition.getPosition().getHorizontalPosition().equals(position.getHorizontalPosition())) &&
-                        aPosition.getPosition().getVerticalPosition().equals(position.getVerticalPosition())).findFirst();
+        Optional<ShipPosition> anOptional = this.shipPositions.stream().filter(aPosition ->
+                (position.isEquals(aPosition.getPosition()))).findFirst();
         if (anOptional.isPresent()) {
             anOptional.get().receiveAShot();
         }

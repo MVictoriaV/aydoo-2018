@@ -39,16 +39,25 @@ public class ShipInGrid {
     }
 
     public void shootInPosition(Position position) {
-        Optional<ShipPosition> anOptional = this.shipPositions.stream().filter(aPosition ->
-                (position.isEquals(aPosition.getPosition()))).findFirst();
+        Optional<ShipPosition> anOptional = this.applyFilterInShipsPositions(position);
         if (anOptional.isPresent()) {
             anOptional.get().receiveAShot();
         }
         this.actionState();
     }
 
+    public boolean presentAShipInPosition(Position aPosition) {
+        Optional<ShipPosition> anOptional = this.applyFilterInShipsPositions(aPosition);
+        return anOptional.isPresent();
+    }
+
     private void actionState () {
         long result = this.shipPositions.stream().filter(x -> x.hasShot()).count();
         this.state = (result == this.aShip.getLength() ? ResultShot.SUNKEN : ResultShot.TOUCHED);
+    }
+
+    private Optional<ShipPosition> applyFilterInShipsPositions (Position aPosition) {
+        return this.shipPositions.stream().filter(lambdaPosition ->
+                (aPosition.isEquals(lambdaPosition.getPosition()))).findFirst();
     }
 }

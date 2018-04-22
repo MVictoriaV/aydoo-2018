@@ -32,12 +32,12 @@ public class Grid {
     }
 
     public boolean hasAShip(Position position) {
-        return (this.getShipInPosition(position) != null);
+        return (this.searchAShipInPosition(position) != null);
     }
 
     public ResultShot shoot(Position position) {
 
-        ShipInGrid aShip = this.getShipInPosition(position);
+        ShipInGrid aShip = this.searchAShipInPosition(position);
 
         if (aShip != null) {
             aShip.shootInPosition(position);
@@ -46,14 +46,12 @@ public class Grid {
         return ResultShot.WATER;
     }
 
-    private ShipInGrid getShipInPosition(Position aPosition) {
+    private ShipInGrid searchAShipInPosition(Position aPosition) {
 
         for (ShipInGrid itemShipInGrid : this.shipsInGrid) {
-            for (ShipPosition itemShipPosition : itemShipInGrid.getShipPositions()) {
-                if (itemShipPosition.getPosition().getHorizontalPosition() == aPosition.getHorizontalPosition() &&
-                        itemShipPosition.getPosition().getVerticalPosition() == aPosition.getVerticalPosition()) {
-                    return itemShipInGrid;
-                }
+            Boolean result = itemShipInGrid.presentAShipInPosition(aPosition);
+            if (result) {
+                return itemShipInGrid;
             }
         }
         return null;

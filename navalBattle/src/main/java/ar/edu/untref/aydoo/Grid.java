@@ -20,7 +20,7 @@ public class Grid {
         if (aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()
                 || aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()) {
 
-            Optional result = this.shipsInGrid.stream().filter(a -> a.equals(aShipInGrid)).findFirst();
+            Optional result = this.shipsInGrid.stream().filter(a -> a.isThereAShipInSamePosition(aShipInGrid)).findFirst();
             if (result.isPresent()) {
                 message = Message.SHIP_EXISTENT_IN_POSITION;
             } else {

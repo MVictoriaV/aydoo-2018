@@ -32,21 +32,6 @@ public class ShipInGrid {
         return this.state;
     }
 
-    @Override
-    public boolean equals(Object o) {
-
-        if (!(o instanceof ShipInGrid)) {
-            return Boolean.FALSE;
-        }
-
-        ShipInGrid newShip = (ShipInGrid) o;
-
-        Optional<ShipPosition> anOptional = newShip.shipPositions.stream().filter(aPosition ->
-                ( aPosition.getPosition().getHorizontalPosition().equals(this.getShipPositions().get(0).getPosition().getHorizontalPosition())) &&
-                        aPosition.getPosition().getVerticalPosition().equals(this.getShipPositions().get(0).getPosition().getVerticalPosition())).findFirst();
-        return anOptional.isPresent();
-    }
-
     public boolean isThereAShipInSamePosition (ShipInGrid aShipInGrid) {
         Optional<ShipPosition> anOptional = aShipInGrid.shipPositions.stream().filter(aPosition ->
         (aPosition.samePosition(this.shipPositions.get(0)))).findFirst();

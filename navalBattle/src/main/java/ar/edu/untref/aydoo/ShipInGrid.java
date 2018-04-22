@@ -24,10 +24,6 @@ public class ShipInGrid {
         }
     }
 
-    public List<ShipPosition> getShipPositions() {
-        return this.shipPositions;
-    }
-
     public ResultShot getState () {
         return this.state;
     }
@@ -59,5 +55,11 @@ public class ShipInGrid {
     private Optional<ShipPosition> applyFilterInShipsPositions (Position aPosition) {
         return this.shipPositions.stream().filter(lambdaPosition ->
                 (aPosition.isEquals(lambdaPosition.getPosition()))).findFirst();
+    }
+
+    public boolean isInTheLimits(final Position finalPosition) {
+        Optional<ShipPosition> anOptional = this.shipPositions.stream().filter(lambdaPosition ->
+                (finalPosition.isGreaterThan(lambdaPosition.getPosition()))).findFirst();
+        return anOptional.isPresent();
     }
 }

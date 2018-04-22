@@ -16,10 +16,7 @@ public class Grid {
     public String putShipInGrid(ShipInGrid aShipInGrid) {
 
         String message = Message.POSITION_NON_EXISTENT;
-
-        if (aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()
-                || aShipInGrid.getShipPositions().get(0).getPosition().getHorizontalPosition() <= this.finalPosition.getHorizontalPosition()) {
-
+        if (this.isInTheLimitsOfPosition(aShipInGrid)) {
             Optional result = this.shipsInGrid.stream().filter(a -> a.isThereAShipInSamePosition(aShipInGrid)).findFirst();
             if (result.isPresent()) {
                 message = Message.SHIP_EXISTENT_IN_POSITION;
@@ -55,5 +52,9 @@ public class Grid {
             }
         }
         return null;
+    }
+
+    private boolean isInTheLimitsOfPosition (ShipInGrid aShipInGrid) {
+        return aShipInGrid.isInTheLimits(this.finalPosition);
     }
 }

@@ -21,4 +21,8 @@ public class Position {
     public boolean isEquals(Position aPosition) {
         return verticalPosition == aPosition.getVerticalPosition() && horizontalPosition == aPosition.getHorizontalPosition();
     }
+
+    public boolean isGreaterThan (Position aPosition) {
+        return verticalPosition > aPosition.getVerticalPosition() && horizontalPosition > aPosition.getHorizontalPosition();
+    }
 }

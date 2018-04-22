@@ -10,7 +10,6 @@ public class ShipInGrid {
     private ResultShot state;
     private List<ShipPosition> shipPositions = new ArrayList<>();
 
-
     public ShipInGrid(Position initialPosition, Integer lengthShip, boolean isVertical) {
         this.aShip = new Ship(lengthShip);
         for (int i = 0; i < this.aShip.getLength(); i++) {
@@ -46,6 +45,10 @@ public class ShipInGrid {
                 ( aPosition.getPosition().getHorizontalPosition().equals(this.getShipPositions().get(0).getPosition().getHorizontalPosition())) &&
                         aPosition.getPosition().getVerticalPosition().equals(this.getShipPositions().get(0).getPosition().getVerticalPosition())).findFirst();
         return anOptional.isPresent();
+    }
+
+    public boolean isThereAShipInSamePosition (ShipInGrid aShipInGrid) {
+        return true;
     }
 
     public void shootInPosition(Position position) {

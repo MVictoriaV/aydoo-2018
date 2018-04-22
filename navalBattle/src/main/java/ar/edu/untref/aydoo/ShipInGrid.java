@@ -48,7 +48,9 @@ public class ShipInGrid {
     }
 
     public boolean isThereAShipInSamePosition (ShipInGrid aShipInGrid) {
-        return true;
+        Optional<ShipPosition> anOptional = aShipInGrid.shipPositions.stream().filter(aPosition ->
+        (aPosition.samePosition(this.shipPositions.get(0)))).findFirst();
+        return anOptional.isPresent();
     }
 
     public void shootInPosition(Position position) {

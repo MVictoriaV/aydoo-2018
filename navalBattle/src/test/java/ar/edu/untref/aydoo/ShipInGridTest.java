@@ -47,6 +47,17 @@ public class ShipInGridTest {
         Assert.assertTrue(result);
     }
 
+    @Test
+    public void thereAre2ShipsInGridButDifferentPositions() {
+
+        ShipInGrid shipInGrid = this.createAShipInGrid(1, 2, 1);
+        ShipInGrid otherShipInGrid = this.createAShipInGrid(5, 1, 1);
+
+        Boolean result = shipInGrid.isThereAShipInSamePosition(otherShipInGrid);
+
+        Assert.assertFalse(result);
+    }
+
     private ShipInGrid createAShipInGrid(Integer horizontalPosition, Integer verticalPosition, Integer lengthShip){
         Position initialPosition = new Position(horizontalPosition, verticalPosition);
         return new ShipInGrid(initialPosition, lengthShip, Boolean.TRUE);

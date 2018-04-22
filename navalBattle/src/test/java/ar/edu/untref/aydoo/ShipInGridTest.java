@@ -25,6 +25,17 @@ public class ShipInGridTest {
         Assert.assertEquals(ResultShot.TOUCHED, shipInGrid.getState());
     }
 
+    @Test
+    public void shootX2ToShipOf2LengthShouldBeReturnSUNKEN() {
+
+        ShipInGrid shipInGrid = this.createAShipInGrid(1, 2, 2);
+
+        shipInGrid.shootInPosition(new Position(1, 2));
+        shipInGrid.shootInPosition(new Position(1, 3));
+
+        Assert.assertEquals(ResultShot.SUNKEN, shipInGrid.getState());
+    }
+
     private ShipInGrid createAShipInGrid(Integer horizontalPosition, Integer verticalPosition, Integer lengthShip){
         Position initialPosition = new Position(horizontalPosition, verticalPosition);
         return new ShipInGrid(initialPosition, lengthShip, Boolean.TRUE);

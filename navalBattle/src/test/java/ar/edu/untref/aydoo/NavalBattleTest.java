@@ -8,11 +8,8 @@ public class NavalBattleTest {
     @Test
     public void putShipInGrid () {
 
-        Position finalPosition = new Position(2, 2);
-        Grid aGrid = new Grid(finalPosition);
-
-        Position initialPositionShip = new Position(0, 0);
-        ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 1, false);
+        Grid aGrid = this.createAGridWithFinalPosition(2, 2);
+        ShipInGrid aShipInGrid = this.createAShipInGrid(0, 0, 1);
 
         aGrid.putShipInGrid(aShipInGrid);
 
@@ -31,11 +28,8 @@ public class NavalBattleTest {
     @Test
     public void putAShipInANotExistingPositionShouldReturnAMsg () {
 
-        Position finalPosition = new Position(2, 2);
-        Grid aGrid = new Grid(finalPosition);
-
-        Position initialPositionShip = new Position(3, 0);
-        ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 1, false);
+        Grid aGrid = this.createAGridWithFinalPosition(2, 2);
+        ShipInGrid aShipInGrid = this.createAShipInGrid(3, 0, 1);
 
         String result = aGrid.putShipInGrid(aShipInGrid);
 
@@ -45,8 +39,7 @@ public class NavalBattleTest {
     @Test
     public void shootInAPositionWithoutShipShouldReturnWater () {
 
-        Position finalPosition = new Position(2, 2);
-        Grid aGrid = new Grid(finalPosition);
+        Grid aGrid = this.createAGridWithFinalPosition(2,2);
 
         ResultShot result = aGrid.shoot(new Position(0, 1));
 
@@ -56,12 +49,8 @@ public class NavalBattleTest {
     @Test
     public void shootInAPositionWithShipLength1ShouldReturnSunken () {
 
-        Position finalPosition = new Position(2, 2);
-        Grid aGrid = new Grid(finalPosition);
-
-        Position initialPositionShip = new Position(1, 1);
-        ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 1, false);
-
+        Grid aGrid = this.createAGridWithFinalPosition(2, 2);
+        ShipInGrid aShipInGrid = this.createAShipInGrid(1, 1, 1);
         aGrid.putShipInGrid(aShipInGrid);
 
         ResultShot result = aGrid.shoot(new Position(1, 1));
@@ -72,9 +61,7 @@ public class NavalBattleTest {
     @Test
     public void shootInAPositionWithShipLength2ShouldReturnTouched () {
 
-        Position finalPosition = new Position(2, 2);
-        Grid aGrid = new Grid(finalPosition);
-
+        Grid aGrid = this.createAGridWithFinalPosition(2, 2);
         Position initialPositionShip = new Position(0, 0);
         ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 2, true);
 
@@ -88,16 +75,23 @@ public class NavalBattleTest {
     @Test
     public void put2ShipsInASamePositionReturnMsgCanNotPut () {
 
-        Position finalPosition = new Position(2, 2);
-        Grid aGrid = new Grid(finalPosition);
-
-        Position initialPositionShip = new Position(0, 0);
-        ShipInGrid aShipInGrid = new ShipInGrid(initialPositionShip, 1, false);
-        ShipInGrid otherShipInGrid = new ShipInGrid(new Position(0, 0), 1, false);
+        Grid aGrid = this.createAGridWithFinalPosition(2, 2);
+        ShipInGrid aShipInGrid = this.createAShipInGrid(0, 0, 1);
+        ShipInGrid otherShipInGrid = this.createAShipInGrid(0,0, 1);
 
         aGrid.putShipInGrid(aShipInGrid);
         String result = aGrid.putShipInGrid(otherShipInGrid);
 
         Assert.assertEquals(Message.SHIP_EXISTENT_IN_POSITION, result);
+    }
+
+    private Grid createAGridWithFinalPosition(final Integer horizontalPosition, final Integer verticalPosition) {
+        Position finalPosition = new Position(horizontalPosition, verticalPosition);
+        return new Grid(finalPosition);
+    }
+
+    private ShipInGrid createAShipInGrid(final Integer horizontalPosition, final Integer verticalPosition, final Integer length) {
+        Position finalPosition = new Position(horizontalPosition, verticalPosition);
+        return new ShipInGrid(finalPosition, length, Boolean.FALSE);
     }
 }

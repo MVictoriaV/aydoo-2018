@@ -7,4 +7,8 @@ public class Cliente {
     public Cliente(DatosPersonales datosPersonales) {
         this.datosPersonales = datosPersonales;
     }
+
+    public Boolean asignarSuscripcion(Producto revistaInfantil) {
+        return true;
+    }
 }

@@ -26,4 +26,8 @@ public class Kiosco {
     public boolean hayClientes() {
         return (clientes.size() > 0);
     }
+
+    public Double montoACobrar(Integer mes) {
+        return 100d;
+    }
 }

@@ -1,12 +1,23 @@
 package ar.edu.untref.aydoo;
 
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class KioscoTest {
+
+    private List<Cliente> listadoDeClientes;
+    private Kiosco kiosquito;
+
+    @Before
+    public void crearEntidadesIniciadoras(){
+        listadoDeClientes = new ArrayList<>();
+        kiosquito = new Kiosco(crearListadoDeProductos(), listadoDeClientes);
+    }
 
     @Test
     public void seCreaKioscoCon3Productos(){
@@ -55,6 +66,17 @@ public class KioscoTest {
         Boolean result = kiosquito.agregarCliente(pepe);
 
         Assert.assertFalse(result);
+    }
+
+    @Test
+    public void montoACobrarAUnClienteEnElMes3() {
+
+        DatosPersonales datosPersonales = new DatosPersonales("Pepe", "Perez", "Calle 123", 12345678);
+        Cliente pepe = new Cliente(datosPersonales);
+
+        Double montoMesMarzo = kiosquito.montoACobrar(3);
+
+        Assert.assertEquals(new Double(100), montoMesMarzo);
     }
 
     private List<Producto> crearListadoDeProductos() {

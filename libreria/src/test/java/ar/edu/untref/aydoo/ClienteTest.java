@@ -25,12 +25,23 @@ public class ClienteTest {
     }
 
     @Test
-    public void contieneSuscripcionRetornarFalse() {
+    public void contieneSuscripcionRetornaFalse() {
 
         Producto revistaInfantil = new Producto(25d, "Pinion", "I1");
 
         Boolean result = this.cliente.contieneSuscripcion(revistaInfantil);
 
         Assert.assertFalse(result);
+    }
+
+    @Test
+    public void contieneSuscripcionRetornaTrue() {
+
+        Producto revistaInfantil = new Producto(25d, "Pinion", "I1");
+        this.cliente.asignarSuscripcion(revistaInfantil);
+
+        Boolean result = this.cliente.contieneSuscripcion(revistaInfantil);
+
+        Assert.assertTrue(result);
     }
 }

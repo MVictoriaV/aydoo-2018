@@ -11,4 +11,8 @@ public class Cliente {
     public Boolean asignarSuscripcion(Producto revistaInfantil) {
         return true;
     }
+
+    public Boolean contieneSuscripcion(Producto revistaInfantil) {
+        return false;
+    }
 }

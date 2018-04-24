@@ -23,4 +23,14 @@ public class ClienteTest {
 
         Assert.assertTrue(result);
     }
+
+    @Test
+    public void contieneSuscripcionRetornarFalse() {
+
+        Producto revistaInfantil = new Producto(25d, "Pinion", "I1");
+
+        Boolean result = this.cliente.contieneSuscripcion(revistaInfantil);
+
+        Assert.assertFalse(result);
+    }
 }

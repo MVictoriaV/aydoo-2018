@@ -68,15 +68,26 @@ public class KioscoTest {
         Assert.assertFalse(result);
     }
 
-    @Test
+    @Ignore@Test
     public void montoACobrarAUnClienteEnElMes3() {
 
         DatosPersonales datosPersonales = new DatosPersonales("Pepe", "Perez", "Calle 123", 12345678);
         Cliente pepe = new Cliente(datosPersonales);
 
-        Double montoMesMarzo = kiosquito.montoACobrar(3);
+        Double montoMesMarzo = kiosquito.montoACobrar(3, pepe);
 
         Assert.assertEquals(new Double(100), montoMesMarzo);
+    }
+
+    @Ignore@Test
+    public void montoACobrarAUnClienteEnElMes3RetornarValor30Pesos() {
+
+        DatosPersonales datosPersonales = new DatosPersonales("Pepe", "Perez", "Calle 123", 12345678);
+        Cliente pepe = new Cliente(datosPersonales);
+
+        Double montoMesMarzo = kiosquito.montoACobrar(3, pepe);
+
+        Assert.assertEquals(new Double(30), montoMesMarzo);
     }
 
     private List<Producto> crearListadoDeProductos() {

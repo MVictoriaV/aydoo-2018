@@ -27,7 +27,17 @@ public class Kiosco {
         return (clientes.size() > 0);
     }
 
-    public Double montoACobrar(Integer mes) {
-        return 100d;
+    public Double montoACobrar(Integer mes, Cliente cliente) {
+
+        Double montoTotal = 0d;
+        if (clientes.contains(cliente)) {
+            CuentaCorriente ctaCte = cliente.getCtaCte();
+            for (Compra cadaCompra : ctaCte.getCompras()) {
+                Producto producto = cadaCompra.getProducto();
+                montoTotal += producto.getPrecioDeVenta();
+            }
+        }
+
+        return montoTotal;
     }
 }

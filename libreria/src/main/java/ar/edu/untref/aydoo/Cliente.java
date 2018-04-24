@@ -7,10 +7,12 @@ public class Cliente {
 
     private DatosPersonales datosPersonales;
     private List<Producto> suscripciones;
+    private CuentaCorriente ctaCte;
 
     public Cliente(DatosPersonales datosPersonales) {
         this.datosPersonales = datosPersonales;
         this.suscripciones = new ArrayList<>();
+        this.ctaCte = new CuentaCorriente();
     }
 
     public Boolean asignarSuscripcion(Producto producto) {
@@ -19,5 +21,9 @@ public class Cliente {
 
     public Boolean contieneSuscripcion(Producto producto) {
         return this.suscripciones.contains(producto);
+    }
+
+    public CuentaCorriente getCtaCte() {
+        return ctaCte;
     }
 }

@@ -5,6 +5,8 @@ import org.junit.Test;
 
 public class ProductoTest {
 
+    private static Double IVA = 1.21;
+
     @Test
     public void obtenerPrecioDeVentaDeUnProductoRetornaValor10() {
 
@@ -23,5 +25,16 @@ public class ProductoTest {
         Double precio = lapizColorNegro.getPrecioDeVenta();
 
         Assert.assertEquals(new Double(9.99), precio);
+    }
+
+    @Test
+    public void obtenerPrecioDeVentaDeUnArticuloRetornaValor20MasIVA() {
+
+        Producto lapizColorNegro = new ArticuloDeLibreria(20d, "Lapiz color negro","A2");
+
+        Double precio = lapizColorNegro.getPrecioDeVenta();
+        Double precioMasIVA = 20d*IVA;
+
+         Assert.assertEquals(precioMasIVA, precio);
     }
 }

@@ -13,4 +13,8 @@ public class Kiosco {
     public boolean hayProductos(){
         return (productos.size() > 0);
     }
+
+    public boolean agregarCliente(Cliente pepe) {
+        return true;
+    }
 }

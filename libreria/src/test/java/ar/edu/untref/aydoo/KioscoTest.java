@@ -44,6 +44,19 @@ public class KioscoTest {
         Assert.assertTrue(kiosquito.hayClientes());
     }
 
+    @Test
+    public void seCreaKioscoConMismosClientesDeberiaRetornarFalse(){
+
+        DatosPersonales datosPersonales = new DatosPersonales("Pepe", "Perez", "Calle 123", 12345678);
+        Cliente pepe = new Cliente(datosPersonales);
+        Kiosco kiosquito = new Kiosco(this.crearListadoDeProductos(), new ArrayList<>());
+
+        kiosquito.agregarCliente(pepe);
+        Boolean result = kiosquito.agregarCliente(pepe);
+
+        Assert.assertFalse(result);
+    }
+
     private List<Producto> crearListadoDeProductos() {
         List<Producto> productos = new ArrayList<>();
         productos.add(new Producto(10.0, "Lapiz", "A1"));

@@ -17,7 +17,10 @@ public class Kiosco {
     }
 
     public boolean agregarCliente(Cliente unCliente) {
-        return true;
+        if (clientes.contains(unCliente)) {
+            return false;
+        }
+        return clientes.add(unCliente);
     }
 
     public boolean hayClientes() {

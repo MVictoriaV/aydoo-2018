@@ -59,9 +59,9 @@ public class KioscoTest {
 
     private List<Producto> crearListadoDeProductos() {
         List<Producto> productos = new ArrayList<>();
-        productos.add(new Producto(10.0, "Lapiz", "A1"));
-        productos.add(new Producto(26.0, "Cuaderno", "A1"));
-        productos.add(new Producto(55.0, "Revista", "R1"));
+        productos.add(new ArticuloDeLibreria(10.0, "Lapiz", "A1"));
+        productos.add(new ArticuloDeLibreria(26.0, "Cuaderno", "A1"));
+        productos.add(new Periodico(55.0, "Revista", "R1"));
         return productos;
     }
 }

@@ -5,11 +5,8 @@ public class ArticuloDeLibreria extends Producto {
     private static final Double IVA = 1.21;
 
     public ArticuloDeLibreria(Double precio, String descripcion, String codigo) {
-        super(precio, descripcion, codigo);
-    }
-
-    @Override
-    public Double getPrecioDeVenta() {
-        return super.getPrecioDeVenta() * IVA;
+        this.precio = precio * IVA;
+        this.descripcion = descripcion;
+        this.codigo = codigo;
     }
 }

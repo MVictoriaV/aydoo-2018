@@ -10,9 +10,9 @@ public class ProductoTest {
     @Test
     public void obtenerPrecioDeVentaDeUnProductoRetornaValor10() {
 
-        Producto lapiz = new Producto(10d, "Lapiz", "A1");
+        Producto revista = new Periodico(10d, "RevistaGente", "A1");
 
-        Double precio = lapiz.getPrecioDeVenta();
+        Double precio = revista.getPrecioDeVenta();
 
         Assert.assertEquals(new Double(10), precio);
     }
@@ -20,9 +20,9 @@ public class ProductoTest {
     @Test
     public void obtenerPrecioDeVentaDeUnProductoRetornaValor9Con99() {
 
-        Producto lapizColorNegro = new Producto(9.99, "Lapiz color negro","A2");
+        Producto diarioArg = new Periodico(9.99, "Diario ARG","A2");
 
-        Double precio = lapizColorNegro.getPrecioDeVenta();
+        Double precio = diarioArg.getPrecioDeVenta();
 
         Assert.assertEquals(new Double(9.99), precio);
     }

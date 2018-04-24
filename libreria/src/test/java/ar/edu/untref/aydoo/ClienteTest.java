@@ -17,7 +17,7 @@ public class ClienteTest {
     @Test
     public void asignarSuscripcionDeUnProducto() {
 
-        Producto revistaInfantil = new Producto(25d, "Pinion", "I1");
+        Producto revistaInfantil = new Periodico(25d, "Pinion", "I1");
 
         Boolean result = this.cliente.asignarSuscripcion(revistaInfantil);
 
@@ -27,7 +27,7 @@ public class ClienteTest {
     @Test
     public void contieneSuscripcionRetornaFalse() {
 
-        Producto revistaInfantil = new Producto(25d, "Pinion", "I1");
+        Producto revistaInfantil = new Periodico(25d, "Pinion", "I1");
 
         Boolean result = this.cliente.contieneSuscripcion(revistaInfantil);
 
@@ -37,7 +37,7 @@ public class ClienteTest {
     @Test
     public void contieneSuscripcionRetornaTrue() {
 
-        Producto revistaInfantil = new Producto(25d, "Pinion", "I1");
+        Producto revistaInfantil = new Periodico(25d, "Pinion", "I1");
         this.cliente.asignarSuscripcion(revistaInfantil);
 
         Boolean result = this.cliente.contieneSuscripcion(revistaInfantil);

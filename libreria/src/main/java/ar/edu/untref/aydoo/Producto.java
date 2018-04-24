@@ -1,17 +1,10 @@
 package ar.edu.untref.aydoo;
 
-public class Producto {
+public abstract class Producto {
 
-    private Double precio;
-    private String descripcion;
-    private String codigo;
-
-    public Producto(Double precio, String descripcion, String codigo) {
-        this.precio = precio;
-        this.descripcion = descripcion;
-        this.codigo = codigo;
-
-    }
+    protected Double precio;
+    protected String descripcion;
+    protected String codigo;
 
     public Double getPrecioDeVenta() {
         return precio;

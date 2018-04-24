@@ -26,4 +26,8 @@ public class Cliente {
     public CuentaCorriente getCtaCte() {
         return ctaCte;
     }
+
+    public void setCtaCte(CuentaCorriente ctaCte) {
+        this.ctaCte = ctaCte;
+    }
 }

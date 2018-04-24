@@ -8,9 +8,7 @@ public class Compra {
         return producto;
     }
 
-    public void setProducto() {
-    }
-
-    public void setCliente(Cliente cliente) {
+    public void setProducto(Producto unProducto) {
+        producto = unProducto;
     }
 }

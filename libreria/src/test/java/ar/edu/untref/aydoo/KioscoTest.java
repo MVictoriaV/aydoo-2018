@@ -79,15 +79,24 @@ public class KioscoTest {
         Assert.assertEquals(new Double(100), montoMesMarzo);
     }
 
-    @Ignore@Test
+    @Test
     public void montoACobrarAUnClienteEnElMes3RetornarValor30Pesos() {
 
         DatosPersonales datosPersonales = new DatosPersonales("Pepe", "Perez", "Calle 123", 12345678);
         Cliente pepe = new Cliente(datosPersonales);
 
+        CuentaCorriente ctaCte = new CuentaCorriente();
+        Compra compra = new Compra();
+        compra.setProducto(new Periodico(30.0, "Revista", "A1"));
+        ctaCte.agregarCompra(compra);
+
+        pepe.setCtaCte(ctaCte);
+
+        kiosquito.agregarCliente(pepe);
+
         Double montoMesMarzo = kiosquito.montoACobrar(3, pepe);
 
-        Assert.assertEquals(new Double(30), montoMesMarzo);
+        Assert.assertEquals(new Double(30.0), montoMesMarzo);
     }
 
     private List<Producto> crearListadoDeProductos() {

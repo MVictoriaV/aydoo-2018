@@ -9,10 +9,7 @@ public class CuentaCorrienteTest {
     public void agregarCompraDeberiaEstarEnLaCuentaCorriente(){
 
         Compra nuevaCompra = new Compra();
-        nuevaCompra.setProducto();
-        DatosPersonales datosPersonales = new DatosPersonales("Pepe", "Perez", "Calle 123", 12345678);
-        Cliente cliente = new Cliente(datosPersonales);
-        nuevaCompra.setCliente(cliente);
+        nuevaCompra.setProducto(new ArticuloDeLibreria(30.0, "Lapiz", "A1"));
         CuentaCorriente ctaCte = new CuentaCorriente();
 
         ctaCte.agregarCompra(nuevaCompra);

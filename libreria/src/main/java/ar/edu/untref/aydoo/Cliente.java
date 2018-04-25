@@ -40,7 +40,7 @@ public class Cliente {
             int mesDeLaCompra = obtenerMes(cadaCompra.getFecha());
             if (mes == mesDeLaCompra) {
                 Producto producto = cadaCompra.getProducto();
-                if (suscripciones.contains(producto)) {
+                if (contieneSuscripcion(producto)) {
                     montoDelMes += (producto.getPrecioDeVenta() / Utils.SUSCRIPCION);
                 } else {
                     montoDelMes += producto.getPrecioDeVenta();
@@ -54,5 +54,9 @@ public class Cliente {
         Calendar cal = Calendar.getInstance();
         cal.setTime(fecha);
         return cal.get(Calendar.MONTH) + 1;
+    }
+
+    public boolean tieneSuscripcion() {
+        return this.suscripciones.size() > 0;
     }
 }

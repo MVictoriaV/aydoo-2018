@@ -27,11 +27,22 @@ public class Kiosco {
         return (clientes.size() > 0);
     }
 
-    public Double montoACobrar(Integer mes, Cliente cliente) {
+    public Double montoACobrar(Integer anio, Cliente cliente) {
 
         Double montoTotal = 0d;
         if (clientes.contains(cliente)) {
-            montoTotal = cliente.obtenerMontoComprasRealizadas(mes);
+            montoTotal = cliente.obtenerMontoComprasRealizadas(anio);
+            if (!cliente.tieneSuscripcion()) {
+                montoTotal = aplicarDescuentoCliente(montoTotal, Utils.DESCUENTO_CLIENTE);
+            }
+        }
+        return montoTotal;
+    }
+
+    public Double montoACobrar(Integer mes, Integer anio, Cliente cliente) {
+        Double montoTotal = 0d;
+        if (clientes.contains(cliente)) {
+            montoTotal = cliente.obtenerMontoComprasRealizadas(mes, anio);
             if (!cliente.tieneSuscripcion()) {
                 montoTotal = aplicarDescuentoCliente(montoTotal, Utils.DESCUENTO_CLIENTE);
             }

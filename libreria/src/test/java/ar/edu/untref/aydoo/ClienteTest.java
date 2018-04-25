@@ -48,7 +48,7 @@ public class ClienteTest {
     }
 
     @Test
-    public void obtenerMontoComprasRealizadasMes4DeberiaRetornar100() {
+    public void obtenerMontoComprasRealizadasMes4DeberiaRetornar100SinSuscripcion() {
 
         Compra nuevaCompra = new Compra(new Date());
         nuevaCompra.setProducto(new Periodico(100.0, "Revista", "A1"));
@@ -56,7 +56,7 @@ public class ClienteTest {
         ctaCte.agregarCompra(nuevaCompra);
         this.cliente.setCtaCte(ctaCte);
 
-        Double monto = this.cliente.obtenerMontoComprasRealizadas(4);
+        Double monto = this.cliente.obtenerMontoComprasRealizadas(4, 2018);
 
         Assert.assertEquals(new Double(100), monto);
     }
@@ -72,7 +72,7 @@ public class ClienteTest {
         this.cliente.asignarSuscripcion(revistaGente);
         this.cliente.setCtaCte(ctaCte);
 
-        Double monto = this.cliente.obtenerMontoComprasRealizadas(4);
+        Double monto = this.cliente.obtenerMontoComprasRealizadas(4, 2018);
 
         Assert.assertEquals(new Double(83.33), monto, 0.02);
     }

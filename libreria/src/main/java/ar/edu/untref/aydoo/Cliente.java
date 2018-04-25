@@ -33,12 +33,33 @@ public class Cliente {
         this.ctaCte = ctaCte;
     }
 
-    public Double obtenerMontoComprasRealizadas(Integer mes) {
+    public Double obtenerMontoComprasRealizadas(Integer anio) {
 
+        Double montoDelAnio = 0d;
+        for (Compra cadaCompra : ctaCte.getCompras()) {
+            int anioDeLaCompra = Utils.obtenerAnio(cadaCompra.getFecha());
+            if (anio == anioDeLaCompra) {
+                Producto producto = cadaCompra.getProducto();
+                if (contieneSuscripcion(producto)) {
+                    montoDelAnio += (producto.getPrecioDeVenta() / Utils.SUSCRIPCION);
+                } else {
+                    montoDelAnio += producto.getPrecioDeVenta();
+                }
+            }
+        }
+        return montoDelAnio;
+    }
+
+    public boolean tieneSuscripcion() {
+        return this.suscripciones.size() > 0;
+    }
+
+    public Double obtenerMontoComprasRealizadas(Integer mes, Integer anio) {
         Double montoDelMes = 0d;
         for (Compra cadaCompra : ctaCte.getCompras()) {
-            int mesDeLaCompra = obtenerMes(cadaCompra.getFecha());
-            if (mes == mesDeLaCompra) {
+            int mesDeLaCompra = Utils.obtenerMes(cadaCompra.getFecha());
+            int anioDeLaCompra = Utils.obtenerAnio(cadaCompra.getFecha());
+            if (mes == mesDeLaCompra && anio == anioDeLaCompra) {
                 Producto producto = cadaCompra.getProducto();
                 if (contieneSuscripcion(producto)) {
                     montoDelMes += (producto.getPrecioDeVenta() / Utils.SUSCRIPCION);
@@ -48,15 +69,5 @@ public class Cliente {
             }
         }
         return montoDelMes;
-    }
-
-    private static int obtenerMes(Date fecha){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(fecha);
-        return cal.get(Calendar.MONTH) + 1;
-    }
-
-    public boolean tieneSuscripcion() {
-        return this.suscripciones.size() > 0;
     }
 }

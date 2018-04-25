@@ -170,6 +170,31 @@ public class KioscoTest {
         Assert.assertEquals(new Double(25), montoMesMarzo, 0.1);
     }
 
+    @Test
+    public void montoACobrarAUnClienteAnualAnio2017() {
+
+        DatosPersonales datosPersonales = new DatosPersonales("Pepe", "Perez", "Calle 123", 12345678);
+        Cliente pepe = new Cliente(datosPersonales);
+
+        CuentaCorriente ctaCte = new CuentaCorriente();
+
+        Compra compra = new Compra(obtenerFechaFormateada("01/03/2017"));
+        Producto diarioARG = new Periodico(30.0, "Diario ARG.", "A1");
+        compra.setProducto(diarioARG);
+        ctaCte.agregarCompra(compra);
+        kiosquito.agregarCliente(pepe);
+
+        compra = new Compra(obtenerFechaFormateada("23/05/2017"));
+        compra.setProducto(new Periodico(30.0, "Diario ARG.", "A1"));
+        ctaCte.agregarCompra(compra);
+
+        pepe.setCtaCte(ctaCte);
+
+        Double montoMesMarzo = kiosquito.montoACobrar(2017, pepe);
+
+        Assert.assertEquals(new Double(57.14), montoMesMarzo, 0.2);
+    }
+
     private Date obtenerFechaFormateada(String unaFecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date fecha = null;

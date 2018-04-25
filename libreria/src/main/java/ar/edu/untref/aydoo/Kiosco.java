@@ -32,8 +32,12 @@ public class Kiosco {
         Double montoTotal = 0d;
         if (clientes.contains(cliente)) {
             montoTotal = cliente.obtenerMontoComprasRealizadas(mes);
+            montoTotal = aplicarDescuentoCliente(montoTotal, Utils.DESCUENTO_CLIENTE);
         }
-
         return montoTotal;
+    }
+
+    private Double aplicarDescuentoCliente(Double montoTotal, Double porcentaje) {
+        return montoTotal / porcentaje;
     }
 }

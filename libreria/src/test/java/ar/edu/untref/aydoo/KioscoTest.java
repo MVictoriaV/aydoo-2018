@@ -82,7 +82,7 @@ public class KioscoTest {
         Assert.assertEquals(new Double(100), montoMesMarzo);
     }
 
-    @Ignore@Test
+    @Test
     public void montoACobrarAUnClienteEnElMes3RetornarValor30Pesos() {
 
         DatosPersonales datosPersonales = new DatosPersonales("Pepe", "Perez", "Calle 123", 12345678);
@@ -100,7 +100,28 @@ public class KioscoTest {
 
         Double montoMesMarzo = kiosquito.montoACobrar(3, pepe);
 
-        Assert.assertEquals(new Double(30.0), montoMesMarzo);
+        Assert.assertEquals(new Double(28.57), montoMesMarzo, 0.02);
+    }
+
+    @Test
+    public void montoACobrarAUnClienteEnElMes3Retonar100Menos5x100toDescuento() {
+
+        DatosPersonales datosPersonales = new DatosPersonales("Pepe", "Perez", "Calle 123", 12345678);
+        Cliente pepe = new Cliente(datosPersonales);
+
+        CuentaCorriente ctaCte = new CuentaCorriente();
+
+        Compra compra = new Compra(obtenerFechaFormateada("01/03/2018"));
+        compra.setProducto(new Periodico(30.0, "Revista", "A1"));
+        ctaCte.agregarCompra(compra);
+
+        pepe.setCtaCte(ctaCte);
+
+        kiosquito.agregarCliente(pepe);
+
+        Double montoMesMarzo = kiosquito.montoACobrar(3, pepe);
+
+        Assert.assertEquals(new Double(28.57), montoMesMarzo, 0.02);
     }
 
     private Date obtenerFechaFormateada(String unaFecha) {

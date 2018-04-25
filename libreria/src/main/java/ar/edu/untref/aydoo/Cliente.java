@@ -40,7 +40,11 @@ public class Cliente {
             int mesDeLaCompra = obtenerMes(cadaCompra.getFecha());
             if (mes == mesDeLaCompra) {
                 Producto producto = cadaCompra.getProducto();
-                montoDelMes += producto.getPrecioDeVenta();
+                if (suscripciones.contains(producto)) {
+                    montoDelMes += (producto.getPrecioDeVenta() / Utils.SUSCRIPCION);
+                } else {
+                    montoDelMes += producto.getPrecioDeVenta();
+                }
             }
         }
         return montoDelMes;

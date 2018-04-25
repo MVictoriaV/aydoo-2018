@@ -60,4 +60,20 @@ public class ClienteTest {
 
         Assert.assertEquals(new Double(100), monto);
     }
+
+    @Test
+    public void obtenerDeMontoCompraConSuscripcionDeberiaRetonarMontoMenos20x100to() {
+
+        Compra nuevaCompra = new Compra(new Date());
+        Producto revistaGente = new Periodico(100.0, "Revista", "A1");
+        nuevaCompra.setProducto(revistaGente);
+        CuentaCorriente ctaCte = new CuentaCorriente();
+        ctaCte.agregarCompra(nuevaCompra);
+        this.cliente.asignarSuscripcion(revistaGente);
+        this.cliente.setCtaCte(ctaCte);
+
+        Double monto = this.cliente.obtenerMontoComprasRealizadas(4);
+
+        Assert.assertEquals(new Double(83.33), monto, 0.02);
+    }
 }

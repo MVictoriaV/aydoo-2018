@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 public class ClienteTest {
 
     private Cliente cliente;
@@ -43,5 +45,19 @@ public class ClienteTest {
         Boolean result = this.cliente.contieneSuscripcion(revistaInfantil);
 
         Assert.assertTrue(result);
+    }
+
+    @Test
+    public void obtenerMontoComprasRealizadasMes4DeberiaRetornar100() {
+
+        Compra nuevaCompra = new Compra(new Date());
+        nuevaCompra.setProducto(new Periodico(100.0, "Revista", "A1"));
+        CuentaCorriente ctaCte = new CuentaCorriente();
+        ctaCte.agregarCompra(nuevaCompra);
+        this.cliente.setCtaCte(ctaCte);
+
+        Double monto = this.cliente.obtenerMontoComprasRealizadas(4);
+
+        Assert.assertEquals(new Double(100), monto);
     }
 }

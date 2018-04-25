@@ -31,11 +31,7 @@ public class Kiosco {
 
         Double montoTotal = 0d;
         if (clientes.contains(cliente)) {
-            CuentaCorriente ctaCte = cliente.getCtaCte();
-            for (Compra cadaCompra : ctaCte.getCompras()) {
-                Producto producto = cadaCompra.getProducto();
-                montoTotal += producto.getPrecioDeVenta();
-            }
+            montoTotal = cliente.obtenerMontoComprasRealizadas(mes);
         }
 
         return montoTotal;

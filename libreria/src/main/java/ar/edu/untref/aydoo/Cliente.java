@@ -1,6 +1,8 @@
 package ar.edu.untref.aydoo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Cliente {
@@ -29,5 +31,24 @@ public class Cliente {
 
     public void setCtaCte(CuentaCorriente ctaCte) {
         this.ctaCte = ctaCte;
+    }
+
+    public Double obtenerMontoComprasRealizadas(Integer mes) {
+
+        Double montoDelMes = 0d;
+        for (Compra cadaCompra : ctaCte.getCompras()) {
+            int mesDeLaCompra = obtenerMes(cadaCompra.getFecha());
+            if (mes == mesDeLaCompra) {
+                Producto producto = cadaCompra.getProducto();
+                montoDelMes += producto.getPrecioDeVenta();
+            }
+        }
+        return montoDelMes;
+    }
+
+    private static int obtenerMes(Date fecha){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fecha);
+        return cal.get(Calendar.MONTH) + 1;
     }
 }

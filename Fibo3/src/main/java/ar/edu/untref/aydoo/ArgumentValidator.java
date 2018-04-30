@@ -2,7 +2,18 @@ package ar.edu.untref.aydoo;
 
 public class ArgumentValidator {
 
+    private final static String OPTION_VD = "-o=vd";
+    private final static String OPTION_VI = "-o=vi";
+    private final static String OPTION_HI = "-o=hi";
+
     public Boolean checkArguments(String[] arguments) {
-        return true;
+        if (arguments.length == 2) {
+            return checkFirstArgument(arguments[0]);
+        }
+        return arguments.length <= 4;
+    }
+
+    private Boolean checkFirstArgument(String firstArgument) {
+        return (firstArgument == OPTION_VD || firstArgument == OPTION_VI || firstArgument == OPTION_HI);
     }
 }

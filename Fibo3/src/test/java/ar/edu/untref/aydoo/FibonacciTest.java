@@ -95,24 +95,4 @@ public class FibonacciTest {
 
         Assert.assertEquals("HORIZONTAL", result);
     }
-
-    @Ignore@Test
-    public void printSuccessionHorizontal() {
-        Boolean isInverted = false;
-        Fibonacci fibonacci = new Fibonacci(4, isInverted);
-
-        String result = fibonacci.print();
-
-        Assert.assertEquals("print horizontal", result);
-    }
-
-    @Ignore@Test
-    public void printSuccessionVertical() {
-        Boolean isInverted = false;
-        Fibonacci fibonacci = new Fibonacci(4, isInverted);
-        SuperFibonacci verticalFibonacci = new VerticalFibonacci(fibonacci);
-        String result = verticalFibonacci.print();
-
-        Assert.assertEquals("print vertical", result);
-    }
 }

@@ -9,52 +9,56 @@ public class Program {
 
     public static void main(String[] args) {
 
-        ArgumentValidator argumentValidator = new ArgumentValidator();
-        Boolean isRight = argumentValidator.checkArguments(args);
+        boolean isRightArgument = new ArgumentValidator().checkArguments(args);
 
-        if (isRight) {
-            args = checkArguments(args);
+        if (isRightArgument) {
+            args = completeArguments(args);
 
             HashMap<Integer, String> map = getAMap();
-            String option = args[0];
-            String value = args[args.length-1];
-            int limitSuccession = Integer.valueOf(value);
+            int limitSuccession = obtainLimitSuccession(args);
 
-            Integer keyOfOption = getKeyOfOption(map, option);
+            Integer keyOfOption = getKeyOfOption(map, args[0]);
             boolean isInverted = (keyOfOption == 2 || keyOfOption == 4);
 
             Fibonacci aFibonacci = new Fibonacci(limitSuccession, isInverted);
-
-            if (isArgumentF(args[1])) {
-
-            } else {
-                if(isArgumentMS(args[1])) {
-                    SumattionFibonacciPrinter sumattionFibonacciPrinter = new SumattionFibonacciPrinter();
-                    sumattionFibonacciPrinter.print(aFibonacci.getSuccession());
-                } else {
-                    if (keyOfOption == 1 || keyOfOption == 2) {
-                        VerticalFibonacciPrinter verticalFibonacciPrinter = new VerticalFibonacciPrinter();
-                        verticalFibonacciPrinter.print(aFibonacci.getSuccession());
-                    } else {
-                        HorizontalFibonacciPrinter horizontalFibonacciPrinter = new HorizontalFibonacciPrinter();
-                        horizontalFibonacciPrinter.print(aFibonacci.getSuccession());
-                    }
-                }
-            }
+            printFibonacci(args[1], keyOfOption, aFibonacci);
         } else {
             System.out.println("Opciones no validas.");
         }
     }
 
-    private static Boolean isArgumentF(String arg) {
+    private static void printFibonacci(String argument, Integer keyOfOption, Fibonacci aFibonacci) {
+        if (writeInFile(argument)) {
+
+        } else {
+            if(isModeSummation(argument)) {
+                SumattionFibonacciPrinter sumattionFibonacciPrinter = new SumattionFibonacciPrinter();
+                sumattionFibonacciPrinter.print(aFibonacci.getSuccession());
+            } else {
+                if (keyOfOption == 1 || keyOfOption == 2) {
+                    VerticalFibonacciPrinter verticalFibonacciPrinter = new VerticalFibonacciPrinter();
+                    verticalFibonacciPrinter.print(aFibonacci.getSuccession());
+                } else {
+                    HorizontalFibonacciPrinter horizontalFibonacciPrinter = new HorizontalFibonacciPrinter();
+                    horizontalFibonacciPrinter.print(aFibonacci.getSuccession());
+                }
+            }
+        }
+    }
+
+    private static int obtainLimitSuccession(String[] args) {
+        return Integer.valueOf(args[args.length - 1]);
+    }
+
+    private static Boolean writeInFile(String arg) {
         return arg.contains("-f");
     }
 
-    private static Boolean isArgumentMS(String arg) {
+    private static Boolean isModeSummation(String arg) {
         return arg.contains("-m=s");
     }
 
-    private static String[] checkArguments(String[] args) {
+    private static String[] completeArguments(String[] args) {
         String[] arguments = args;
         if (arguments.length == 1) {
             String value = args[0];

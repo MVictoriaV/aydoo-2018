@@ -9,32 +9,49 @@ public class Program {
 
     public static void main(String[] args) {
 
-        args = checkArguments(args);
+        ArgumentValidator argumentValidator = new ArgumentValidator();
+        Boolean isRight = argumentValidator.checkArguments(args);
 
-        HashMap<Integer, String> map = getAMap();
-        String option = args[0];
+        if (isRight) {
+            args = checkArguments(args);
 
-        if (map.containsValue(option)) {
-            int limitSuccession = Integer.valueOf(args[1]);
+            HashMap<Integer, String> map = getAMap();
+            String option = args[0];
+            String value = args[args.length-1];
+            int limitSuccession = Integer.valueOf(value);
 
             Integer keyOfOption = getKeyOfOption(map, option);
             boolean isInverted = (keyOfOption == 2 || keyOfOption == 4);
 
-            Fibonacci aFibonacci;
+            Fibonacci aFibonacci = new Fibonacci(limitSuccession, isInverted);
 
-            if (keyOfOption == 1 || keyOfOption == 2) {
-                aFibonacci = new Fibonacci(limitSuccession, isInverted);
-                SuperFibonacci aVerticalFibonacci = new VerticalFibonacci(aFibonacci);
-                String result = aVerticalFibonacci.print();
-                System.out.println(result);
+            if (isArgumentF(args[1])) {
+
             } else {
-                aFibonacci = new Fibonacci(limitSuccession, isInverted);
-                String result = aFibonacci.print();
-                System.out.println(result);
+                if(isArgumentMS(args[1])) {
+                    SumattionFibonacciPrinter sumattionFibonacciPrinter = new SumattionFibonacciPrinter();
+                    sumattionFibonacciPrinter.print(aFibonacci.getSuccession());
+                } else {
+                    if (keyOfOption == 1 || keyOfOption == 2) {
+                        VerticalFibonacciPrinter verticalFibonacciPrinter = new VerticalFibonacciPrinter();
+                        verticalFibonacciPrinter.print(aFibonacci.getSuccession());
+                    } else {
+                        HorizontalFibonacciPrinter horizontalFibonacciPrinter = new HorizontalFibonacciPrinter();
+                        horizontalFibonacciPrinter.print(aFibonacci.getSuccession());
+                    }
+                }
             }
         } else {
             System.out.println("Opciones no validas.");
         }
+    }
+
+    private static Boolean isArgumentF(String arg) {
+        return arg.contains("-f");
+    }
+
+    private static Boolean isArgumentMS(String arg) {
+        return arg.contains("-m=s");
     }
 
     private static String[] checkArguments(String[] args) {

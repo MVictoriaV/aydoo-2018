@@ -10,36 +10,33 @@ public class FibonacciTest {
 
     @Test
     public void getSuccessionShouldReturn5Values() {
+
         Integer limitSuccession = 5;
         Boolean isInverted = false;
         Fibonacci fibonacci = new Fibonacci(limitSuccession, isInverted);
+        Integer[] expectedsValues = new Integer[]{0, 1, 1, 2, 3};
+
         List<Integer> results = fibonacci.getSuccession();
 
-        int[] actualsValues = new int[results.size()];
-        for (int i = 0; i < results.size(); i++) {
-            actualsValues[i] = results.get(i);
-        }
-        int[] expectedsValues = new int[]{0, 1, 1, 2, 3};
-        Assert.assertArrayEquals(expectedsValues, actualsValues);
+        Assert.assertArrayEquals(expectedsValues, results.toArray());
     }
 
     @Test
     public void getSuccessionShouldReturn8Values() {
+
         Integer limitSuccession = 8;
         Boolean isInverted = false;
         Fibonacci fibonacci = new Fibonacci(limitSuccession, isInverted);
+        Integer[] expectedsValues = new Integer[]{0, 1, 1, 2, 3, 5, 8, 13};
+
         List<Integer> results = fibonacci.getSuccession();
 
-        int[] actualsValues = new int[results.size()];
-        for (int i = 0; i < results.size(); i++) {
-            actualsValues[i] = results.get(i);
-        }
-        int[] expectedsValues = new int[]{0, 1, 1, 2, 3, 5, 8, 13};
-        Assert.assertArrayEquals(expectedsValues, actualsValues);
+        Assert.assertArrayEquals(expectedsValues, results.toArray());
     }
 
     @Test
     public void successionIsNotNull() {
+
         Integer limitSuccession = 5;
         Boolean isInverted = false;
         Fibonacci fibonacci = new Fibonacci(limitSuccession, isInverted);
@@ -50,44 +47,31 @@ public class FibonacciTest {
 
     @Test
     public void getSuccessionWithLimit3ShouldReturn3ValuesInverted() {
+
         Boolean isInverted = true;
         Fibonacci fibonacci = new Fibonacci(3, isInverted);
+        Integer[] expectedsValues = new Integer[]{1, 1, 0};
+
         List<Integer> results = fibonacci.getSuccession();
 
-        int[] actualsValues = new int[results.size()];
-        for (int i = 0; i < results.size(); i++) {
-            actualsValues[i] = results.get(i);
-        }
-        int[] expectedsValues = new int[]{1, 1, 0};
-        Assert.assertArrayEquals(expectedsValues, actualsValues);
+        Assert.assertArrayEquals(expectedsValues, results.toArray());
     }
 
     @Test
     public void getSuccessionWithLimit4ShouldReturn4ValuesInverted() {
+
         Boolean isInverted = true;
         Fibonacci fibonacci = new Fibonacci(4, isInverted);
+        Integer[] expectedsValues = new Integer[]{2, 1, 1, 0};
+
         List<Integer> results = fibonacci.getSuccession();
 
-        int[] actualsValues = new int[results.size()];
-        for (int i = 0; i < results.size(); i++) {
-            actualsValues[i] = results.get(i);
-        }
-        int[] expectedsValues = new int[]{2, 1, 1, 0};
-        Assert.assertArrayEquals(expectedsValues, actualsValues);
-    }
-
-    @Test
-    public void printSuccessionWithLimit4InShapeVerticalShouldReturnVertical() {
-        Boolean isInverted = false;
-        Fibonacci fibonacci = new Fibonacci(4, isInverted);
-        SuperFibonacci verticalFibonacci = new VerticalFibonacci(fibonacci);
-        String result = verticalFibonacci.getDescription();
-
-        Assert.assertEquals("VERTICAL", result);
+        Assert.assertArrayEquals(expectedsValues, results.toArray());
     }
 
     @Test
     public void printSuccessionWithLimit4InShapeHorizontalShouldReturnHorizontal() {
+
         Boolean isInverted = false;
         Fibonacci fibonacci = new Fibonacci(4, isInverted);
 

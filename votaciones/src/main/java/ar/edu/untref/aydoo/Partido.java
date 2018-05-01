@@ -14,14 +14,9 @@ public class Partido {
 
     public void cargarCandidatoAlListado(Candidato unCandidato, Provincia provincia) {
         if (listadoCandidato.containsKey(provincia)) {
-            if (!contieneCandidato(unCandidato, provincia)){
-                listadoCandidato.get(provincia).add(unCandidato);
-                listadoCandidato.put(provincia, listadoCandidato.get(provincia));
-            }
+            cargarCandidato(unCandidato, provincia);
         } else {
-            List<Candidato> candidatos = new ArrayList<>();
-            candidatos.add(unCandidato);
-            listadoCandidato.put(provincia, candidatos);
+            crearListadoConCandidato(unCandidato, provincia);
         }
     }
 
@@ -29,5 +24,18 @@ public class Partido {
         Optional<Candidato> anOptional = listadoCandidato.get(provincia).stream().filter(candidato ->
                 (candidato.equals(unCandidato))).findFirst();
         return anOptional.isPresent();
+    }
+
+    private void cargarCandidato(Candidato unCandidato, Provincia provincia) {
+        if (!contieneCandidato(unCandidato, provincia)){
+            listadoCandidato.get(provincia).add(unCandidato);
+            listadoCandidato.put(provincia, listadoCandidato.get(provincia));
+        }
+    }
+
+    private void crearListadoConCandidato(Candidato unCandidato, Provincia provincia) {
+        List<Candidato> candidatos = new ArrayList<>();
+        candidatos.add(unCandidato);
+        listadoCandidato.put(provincia, candidatos);
     }
 }

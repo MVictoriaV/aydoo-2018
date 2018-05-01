@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
-public class Fibonacci implements SuperFibonacci {
+public class Fibonacci {
 
     private List<Integer> succession;
 
@@ -17,7 +17,6 @@ public class Fibonacci implements SuperFibonacci {
         }
     }
 
-    @Override
     public List<Integer> getSuccession() {
         return succession;
     }
@@ -37,16 +36,11 @@ public class Fibonacci implements SuperFibonacci {
         return listInverted;
     }
 
-    public String getDescription() {
-        return "HORIZONTAL";
-    }
-
-    @Override
-    public String print() {
-        StringBuffer out = new StringBuffer("fibo<").append(succession.size()).append(">: ");
+    public Integer sumSuccession(){
+        Integer sum = 0;
         for (Integer eachNumber : succession) {
-            out.append(" ").append(eachNumber);
+            sum += eachNumber;
         }
-        return out.toString();
+        return sum;
     }
 }

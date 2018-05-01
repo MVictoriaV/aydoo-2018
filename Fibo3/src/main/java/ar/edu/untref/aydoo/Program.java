@@ -21,29 +21,56 @@ public class Program {
             boolean isInverted = (keyOfOption == 2 || keyOfOption == 4);
 
             Fibonacci aFibonacci = new Fibonacci(limitSuccession, isInverted);
-            printFibonacci(args[1], keyOfOption, aFibonacci);
+
+            Boolean isVertical = keyOfOption == 1 || keyOfOption == 2;
+
+            String succession = giveShapeToFibonacci(aFibonacci, isVertical);
+            String output;
+            if(writeInFile(args[1])) {
+                String nameOfFile = obtainNameFile(args[1]);
+                FibonacciWriter fibonacciWriter = new FibonacciWriter();
+                String text = obtainTextToPrint(args[2], limitSuccession, succession, aFibonacci, isVertical);
+                fibonacciWriter.write(nameOfFile, text);
+                output = "fibo<" + limitSuccession + "> guardado en " + nameOfFile;
+            } else {
+                output = obtainTextToPrint(args[1], limitSuccession, succession, aFibonacci, isVertical);
+            }
+            System.out.println(output);
         } else {
             System.out.println("Opciones no validas.");
         }
     }
 
-    private static void printFibonacci(String argument, Integer keyOfOption, Fibonacci aFibonacci) {
-        if (writeInFile(argument)) {
+    private static String obtainNameFile(String argument) {
+        String[] arrayArgument = argument.split("=");
+        return arrayArgument[1];
+    }
 
+    private static String giveShapeToFibonacci(Fibonacci aFibonacci, Boolean isVertical) {
+        ShapeToFibonacci shapeToFibonacci;
+        if (isVertical) {
+            shapeToFibonacci = new VerticalFibonacci();
         } else {
-            if(isModeSummation(argument)) {
-                SumattionFibonacciPrinter sumattionFibonacciPrinter = new SumattionFibonacciPrinter();
-                sumattionFibonacciPrinter.print(aFibonacci.getSuccession());
-            } else {
-                if (keyOfOption == 1 || keyOfOption == 2) {
-                    VerticalFibonacciPrinter verticalFibonacciPrinter = new VerticalFibonacciPrinter();
-                    verticalFibonacciPrinter.print(aFibonacci.getSuccession());
-                } else {
-                    HorizontalFibonacciPrinter horizontalFibonacciPrinter = new HorizontalFibonacciPrinter();
-                    horizontalFibonacciPrinter.print(aFibonacci.getSuccession());
-                }
-            }
+            shapeToFibonacci = new HorizontalFibonacci();
         }
+        StringBuffer sb = shapeToFibonacci.giveShape(aFibonacci.getSuccession());
+        return sb.toString();
+    }
+
+    private static String obtainTextToPrint(String argument, Integer limitSuccession, String successionWithShape, Fibonacci aFibonacci, Boolean isVertical) {
+        StringBuffer stringBuffer = new StringBuffer();
+        if(isModeSummation(argument)) {
+            stringBuffer.append("fibo<" + limitSuccession + ">s: ");
+            if(isVertical) {
+                stringBuffer.append("\n");
+            }
+            stringBuffer.append(aFibonacci.sumSuccession());
+        } else {
+            stringBuffer.append("fibo<" + limitSuccession + ">:");
+            stringBuffer.append(successionWithShape);
+        }
+
+        return stringBuffer.toString();
     }
 
     private static int obtainLimitSuccession(String[] args) {

@@ -68,15 +68,4 @@ public class FibonacciTest {
 
         Assert.assertArrayEquals(expectedsValues, results.toArray());
     }
-
-    @Test
-    public void printSuccessionWithLimit4InShapeHorizontalShouldReturnHorizontal() {
-
-        Boolean isInverted = false;
-        Fibonacci fibonacci = new Fibonacci(4, isInverted);
-
-        String result = fibonacci.getDescription();
-
-        Assert.assertEquals("HORIZONTAL", result);
-    }
 }

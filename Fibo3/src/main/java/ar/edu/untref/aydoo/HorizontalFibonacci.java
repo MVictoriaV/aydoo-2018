@@ -2,14 +2,13 @@ package ar.edu.untref.aydoo;
 
 import java.util.List;
 
-public class VerticalFibonacci implements ShapeToFibonacci{
+public class HorizontalFibonacci implements ShapeToFibonacci {
 
     @Override
     public StringBuffer giveShape(List<Integer> succession) {
         StringBuffer out = new StringBuffer();
         for (Integer eachNumber : succession) {
-            out.append("\n");
-            out.append(eachNumber);
+            out.append(" ").append(eachNumber);
         }
         return out;
     }

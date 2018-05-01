@@ -46,6 +46,18 @@ public class PartidoTest {
         Assert.assertEquals(Integer.valueOf(1), partidoDeBsAs.cantidadDeVotos(Provincia.BUENOS_AIRES));
     }
 
+    @Test
+    public void recibe3VotoCandidatoDelListadoSuma3PuntosElPartido(){
+
+        partidoDeBsAs.cargarCandidatoAlListado(candidatoCosme, Provincia.BUENOS_AIRES);
+
+        partidoDeBsAs.recibirVoto(candidatoCosme);
+        partidoDeBsAs.recibirVoto(candidatoCosme);
+        partidoDeBsAs.recibirVoto(candidatoCosme);
+
+        Assert.assertEquals(Integer.valueOf(3), partidoDeBsAs.cantidadDeVotos(Provincia.BUENOS_AIRES));
+    }
+
     private Candidato crearOtroCandidato(){
         DatosPersonales dp = new DatosPersonales("Pepe", "Fulanito", 12345679);
         return new Candidato(dp);

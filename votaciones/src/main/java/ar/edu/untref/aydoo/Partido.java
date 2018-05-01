@@ -26,6 +26,20 @@ public class Partido {
         return anOptional.isPresent();
     }
 
+    public void recibirVoto(Candidato candidato) {
+        candidato.recibirVoto();
+    }
+
+    public Integer cantidadDeVotos(Provincia provincia) {
+        Integer cantidadDeVotosProvincia = 0;
+        if (contieneProvincia(provincia)) {
+            for (Candidato candidato : listadoCandidato.get(provincia)) {
+                cantidadDeVotosProvincia += candidato.obtenerCantidadDeVotos();
+            }
+        }
+        return cantidadDeVotosProvincia;
+    }
+
     private void cargarCandidato(Candidato unCandidato, Provincia provincia) {
         if (!contieneCandidato(unCandidato, provincia)){
             listadoCandidato.get(provincia).add(unCandidato);
@@ -39,10 +53,7 @@ public class Partido {
         listadoCandidato.put(provincia, candidatos);
     }
 
-    public void recibirVoto(Candidato candidatoCosme) {
-    }
-
-    public Integer cantidadDeVotos(Provincia buenosAires) {
-        return 1;
+    private boolean contieneProvincia(Provincia provincia) {
+        return listadoCandidato.containsKey(provincia);
     }
 }

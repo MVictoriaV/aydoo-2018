@@ -18,7 +18,7 @@ public class ConsejoElectoralTest {
         partidos.add(crearPartidoY("Y", Provincia.BUENOS_AIRES));
         ConsejoElectoral consejo = new ConsejoElectoral();
 
-        HashMap<Provincia, Candidato> ganadores = consejo.calcularCandidatoMasVotado(partidos);
+        HashMap<Provincia, Candidato> ganadores = consejo.calcularCandidatosMasVotado(partidos);
 
         Candidato esperado = partidos.get(1).obtenerCandidatoMasVotado(Provincia.BUENOS_AIRES);
         Candidato actual = ganadores.get(Provincia.BUENOS_AIRES);

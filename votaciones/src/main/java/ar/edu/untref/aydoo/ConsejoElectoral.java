@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ConsejoElectoral {
 
-    public HashMap<Provincia, Candidato> calcularCandidatoMasVotado(List<Partido> partidos) {
+    public HashMap<Provincia, Candidato> calcularCandidatosMasVotado(List<Partido> partidos) {
         HashMap<Provincia, Candidato> ganadores = new HashMap<>();
         Integer cantidadDeVotos = 0;
         Candidato candidato;

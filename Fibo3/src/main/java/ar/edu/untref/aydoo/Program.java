@@ -1,44 +1,43 @@
 package ar.edu.untref.aydoo;
 
-import java.util.HashMap;
-
 public class Program {
 
-    protected Program() {
-    }
+    private static int limitSuccession = 0;
 
     public static void main(String[] args) {
 
         boolean isRightArgument = new ArgumentValidator().checkArguments(args);
-
         if (isRightArgument) {
             args = completeArguments(args);
+            Fibonacci aFibonacci = createFibonacci(args);
 
-            HashMap<Integer, String> map = getAMap();
-            int limitSuccession = obtainLimitSuccession(args);
-
-            Integer keyOfOption = getKeyOfOption(map, args[0]);
-            boolean isInverted = (keyOfOption == 2 || keyOfOption == 4);
-
-            Fibonacci aFibonacci = new Fibonacci(limitSuccession, isInverted);
-
-            Boolean isVertical = keyOfOption == 1 || keyOfOption == 2;
-
-            String succession = giveShapeToFibonacci(aFibonacci, isVertical);
-            String output;
-            if(writeInFile(args[1])) {
-                String nameOfFile = obtainNameFile(args[1]);
-                FibonacciWriter fibonacciWriter = new FibonacciWriter();
-                String text = obtainTextToPrint(args[2], limitSuccession, succession, aFibonacci, isVertical);
-                fibonacciWriter.write(nameOfFile, text);
-                output = "fibo<" + limitSuccession + "> guardado en " + nameOfFile;
-            } else {
-                output = obtainTextToPrint(args[1], limitSuccession, succession, aFibonacci, isVertical);
-            }
+            Boolean isVertical = ("-o=vd".equals(args[0]) || "-o=vi".equals(args[0]));
+            String successionWithFormat = giveShapeToFibonacci(aFibonacci, isVertical);
+            String output = obtainOutput(args, aFibonacci, isVertical, successionWithFormat);
             System.out.println(output);
         } else {
             System.out.println("Opciones no validas.");
         }
+    }
+
+    private static String obtainOutput(String[] args, Fibonacci aFibonacci, Boolean isVertical, String successionWithFormat) {
+        String output;
+        if(writeInFile(args[1])) {
+            String nameOfFile = obtainNameFile(args[1]);
+            FibonacciWriter fibonacciWriter = new FibonacciWriter();
+            String text = obtainTextToShow(args[2], successionWithFormat, aFibonacci, isVertical);
+            fibonacciWriter.write(nameOfFile, text);
+            output = "fibo<" + limitSuccession + "> guardado en " + nameOfFile;
+        } else {
+            output = obtainTextToShow(args[1], successionWithFormat, aFibonacci, isVertical);
+        }
+        return output;
+    }
+
+    private static Fibonacci createFibonacci(String[] args) {
+        limitSuccession = obtainLimitSuccession(args);
+        Boolean isInverted = ("-o=hi".equals(args[0]) || "-o=vi".equals(args[0]));
+        return new Fibonacci(limitSuccession, isInverted);
     }
 
     private static String obtainNameFile(String argument) {
@@ -53,11 +52,10 @@ public class Program {
         } else {
             shapeToFibonacci = new HorizontalFibonacci();
         }
-        StringBuffer sb = shapeToFibonacci.giveShape(aFibonacci.getSuccession());
-        return sb.toString();
+        return shapeToFibonacci.giveShape(aFibonacci.getSuccession());
     }
 
-    private static String obtainTextToPrint(String argument, Integer limitSuccession, String successionWithShape, Fibonacci aFibonacci, Boolean isVertical) {
+    private static String obtainTextToShow(String argument, String successionWithShape, Fibonacci aFibonacci, Boolean isVertical) {
         StringBuffer stringBuffer = new StringBuffer();
         if(isModeSummation(argument)) {
             stringBuffer.append("fibo<" + limitSuccession + ">s: ");
@@ -69,7 +67,6 @@ public class Program {
             stringBuffer.append("fibo<" + limitSuccession + ">:");
             stringBuffer.append(successionWithShape);
         }
-
         return stringBuffer.toString();
     }
 
@@ -88,30 +85,8 @@ public class Program {
     private static String[] completeArguments(String[] args) {
         String[] arguments = args;
         if (arguments.length == 1) {
-            String value = args[0];
-            arguments = new String[2];
-            arguments[0] = "-o=hd";
-            arguments[1] = value;
-
+            arguments = new String[]{"-o=hd", args[0]};
         }
         return arguments;
-    }
-
-    private static HashMap<Integer, String> getAMap(){
-        HashMap<Integer, String> aMap = new HashMap<>();
-        aMap.put(1, "-o=vd");
-        aMap.put(2, "-o=vi");
-        aMap.put(3, "-o=hd");
-        aMap.put(4, "-o=hi");
-        return aMap;
-    }
-
-    private static Integer getKeyOfOption(HashMap<Integer, String> aMap, String value){
-        for (Integer eachKey : aMap.keySet()) {
-            if(value.equals(aMap.get(eachKey).toString())){
-                return eachKey;
-            }
-        }
-        return null;
     }
 }

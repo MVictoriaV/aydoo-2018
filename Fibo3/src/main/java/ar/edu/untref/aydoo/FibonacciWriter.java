@@ -1,6 +1,8 @@
 package ar.edu.untref.aydoo;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.File;
 
 public class FibonacciWriter {
 

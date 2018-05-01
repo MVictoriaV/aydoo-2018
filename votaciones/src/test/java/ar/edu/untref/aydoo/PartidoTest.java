@@ -58,6 +58,18 @@ public class PartidoTest {
         Assert.assertEquals(Integer.valueOf(3), partidoDeBsAs.cantidadDeVotos(Provincia.BUENOS_AIRES));
     }
 
+    @Test
+    public void obtenerElCandidatoQueMasVotosTuvo(){
+
+        partidoDeBsAs.cargarCandidatoAlListado(candidatoCosme, Provincia.BUENOS_AIRES);
+
+        partidoDeBsAs.recibirVoto(candidatoCosme);
+
+        Candidato candidatoEstrella = partidoDeBsAs.obtenerCandidatoMasVotado(Provincia.BUENOS_AIRES);
+
+        Assert.assertEquals(candidatoCosme, candidatoEstrella);
+    }
+
     private Candidato crearOtroCandidato(){
         DatosPersonales dp = new DatosPersonales("Pepe", "Fulanito", 12345679);
         return new Candidato(dp);

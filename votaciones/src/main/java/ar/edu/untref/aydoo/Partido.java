@@ -40,6 +40,20 @@ public class Partido {
         return cantidadDeVotosProvincia;
     }
 
+    public Candidato obtenerCandidatoMasVotado(Provincia provincia) {
+        Candidato candidato = null;
+        if (contieneProvincia(provincia)) {
+            Integer cantidadDeVotosProvinciales = 0;
+            for (Candidato item : listadoCandidato.get(provincia)) {
+                if (item.obtenerCantidadDeVotos() > cantidadDeVotosProvinciales) {
+                    cantidadDeVotosProvinciales = item.obtenerCantidadDeVotos();
+                    candidato = item;
+                }
+            }
+        }
+        return candidato;
+    }
+
     private void cargarCandidato(Candidato unCandidato, Provincia provincia) {
         if (!contieneCandidato(unCandidato, provincia)){
             listadoCandidato.get(provincia).add(unCandidato);

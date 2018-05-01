@@ -38,4 +38,11 @@ public class Partido {
         candidatos.add(unCandidato);
         listadoCandidato.put(provincia, candidatos);
     }
+
+    public void recibirVoto(Candidato candidatoCosme) {
+    }
+
+    public Integer cantidadDeVotos(Provincia buenosAires) {
+        return 1;
+    }
 }

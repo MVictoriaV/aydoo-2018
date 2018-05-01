@@ -6,34 +6,44 @@ import org.junit.Test;
 
 public class PartidoTest {
 
+    private Partido partidoDeBsAs;
     private Candidato candidatoCosme;
 
     @Before
     public void crearCandidato() {
         DatosPersonales dp = new DatosPersonales("Cosme", "Fulanito", 12345678);
         candidatoCosme = new Candidato(dp);
+        partidoDeBsAs = new Partido("Partido de Buenos Aires");
     }
 
     @Test
     public void cargarCandidatoAlListadoDeberiaTenerUnCandidato(){
 
-        Partido partidoX = new Partido("XYZ");
+        partidoDeBsAs.cargarCandidatoAlListado(candidatoCosme, Provincia.BUENOS_AIRES);
 
-        partidoX.cargarCandidatoAlListado(candidatoCosme, Provincia.BUENOS_AIRES);
-
-        Assert.assertTrue(partidoX.contieneCandidato(candidatoCosme, Provincia.BUENOS_AIRES));
+        Assert.assertTrue(partidoDeBsAs.contieneCandidato(candidatoCosme, Provincia.BUENOS_AIRES));
     }
 
     @Test
     public void cargar2CandidatosAlListado(){
 
-        Partido partidoX = new Partido("XYZ");
         Candidato pepe = crearOtroCandidato();
 
-        partidoX.cargarCandidatoAlListado(pepe, Provincia.BUENOS_AIRES);
-        partidoX.cargarCandidatoAlListado(candidatoCosme, Provincia.BUENOS_AIRES);
+        partidoDeBsAs.cargarCandidatoAlListado(pepe, Provincia.BUENOS_AIRES);
+        partidoDeBsAs.cargarCandidatoAlListado(candidatoCosme, Provincia.BUENOS_AIRES);
 
-        Assert.assertTrue(partidoX.contieneCandidato(pepe, Provincia.BUENOS_AIRES));
+        Assert.assertTrue(partidoDeBsAs.contieneCandidato(pepe, Provincia.BUENOS_AIRES));
+        Assert.assertTrue(partidoDeBsAs.contieneCandidato(candidatoCosme, Provincia.BUENOS_AIRES));
+    }
+
+    @Test
+    public void recibeVotoUnCandidatoDelListadoSumaUnPuntoElPartido(){
+
+        partidoDeBsAs.cargarCandidatoAlListado(candidatoCosme, Provincia.BUENOS_AIRES);
+
+        partidoDeBsAs.recibirVoto(candidatoCosme);
+
+        Assert.assertEquals(Integer.valueOf(1), partidoDeBsAs.cantidadDeVotos(Provincia.BUENOS_AIRES));
     }
 
     private Candidato crearOtroCandidato(){

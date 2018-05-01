@@ -18,7 +18,7 @@ public class Candidato {
         this.cantidadDeVotos += 1;
     }
 
-    public int obtenerCantidadDeVotos() {
-        return 1;
+    public Integer obtenerCantidadDeVotos() {
+        return this.cantidadDeVotos;
     }
 }

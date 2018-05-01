@@ -21,4 +21,28 @@ public class ConsejoElectoral {
         }
         return ganadores;
     }
+
+    public Partido calcularPartidoMasVotado(List<Partido> partidos) {
+        Integer cantidadDeVotos = 0;
+        HashMap<Partido, Integer> ganador = new HashMap<>();
+        for (Partido item : partidos) {
+            for (Provincia prov : Provincia.values()) {
+                cantidadDeVotos += item.cantidadDeVotos(prov);
+            }
+            ganador.put(item, cantidadDeVotos);
+        }
+        return obtenerGanador(ganador);
+    }
+
+    private Partido obtenerGanador(HashMap<Partido, Integer> map) {
+        Integer votos = 0;
+        Partido partido = null;
+        for (Partido item : map.keySet()) {
+            if (map.get(item) > votos) {
+                votos = map.get(item);
+                partido = item;
+            }
+        }
+        return partido;
+    }
 }

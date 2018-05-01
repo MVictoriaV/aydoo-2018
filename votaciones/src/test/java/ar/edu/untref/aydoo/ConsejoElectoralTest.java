@@ -1,7 +1,6 @@
 package ar.edu.untref.aydoo;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -22,6 +21,20 @@ public class ConsejoElectoralTest {
 
         Candidato esperado = partidos.get(1).obtenerCandidatoMasVotado(Provincia.BUENOS_AIRES);
         Candidato actual = ganadores.get(Provincia.BUENOS_AIRES);
+
+        Assert.assertEquals(esperado, actual);
+    }
+
+    @Test
+    public void calcularPartidoMasVotadoEnLasPaso() {
+
+        List<Partido> partidos = new ArrayList<>();
+        partidos.add(crearPartidoX("X", Provincia.BUENOS_AIRES));
+        partidos.add(crearPartidoY("Y", Provincia.BUENOS_AIRES));
+        ConsejoElectoral consejo = new ConsejoElectoral();
+
+        Partido esperado = partidos.get(1);
+        Partido actual = consejo.calcularPartidoMasVotado(partidos);
 
         Assert.assertEquals(esperado, actual);
     }

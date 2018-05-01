@@ -54,6 +54,18 @@ public class Partido {
         return candidato;
     }
 
+    public HashMap<Provincia, Candidato> obtenerCandidatosMasVotadoEnCadaProv() {
+        Candidato candidato = null;
+        HashMap<Provincia, Candidato> candidatosGanadores = new HashMap<>();
+        for (Provincia item : Provincia.values()) {
+            candidato = obtenerCandidatoMasVotado(item);
+            if (candidato != null){
+               candidatosGanadores.put(item, candidato);
+            }
+        }
+        return candidatosGanadores;
+    }
+
     private void cargarCandidato(Candidato unCandidato, Provincia provincia) {
         if (!contieneCandidato(unCandidato, provincia)){
             listadoCandidato.get(provincia).add(unCandidato);

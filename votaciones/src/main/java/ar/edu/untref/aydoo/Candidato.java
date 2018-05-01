@@ -14,8 +14,8 @@ public class Candidato {
         this.cantidadDeVotos = 0;
     }
 
-    public void recibirVoto(Integer voto) {
-        this.cantidadDeVotos += voto;
+    public void recibirVoto() {
+        this.cantidadDeVotos += 1;
     }
 
     public int obtenerCantidadDeVotos() {

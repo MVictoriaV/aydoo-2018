@@ -50,7 +50,7 @@ public class ClienteTest {
     @Test
     public void obtenerMontoComprasRealizadasMes4DeberiaRetornar100SinSuscripcion() {
 
-        Compra nuevaCompra = new Compra(new Date());
+        Compra nuevaCompra = new Compra(new Date("04/23/2018"));
         nuevaCompra.setProducto(new Periodico(100.0, "Revista", "A1"));
         CuentaCorriente ctaCte = new CuentaCorriente();
         ctaCte.agregarCompra(nuevaCompra);
@@ -64,7 +64,7 @@ public class ClienteTest {
     @Test
     public void obtenerDeMontoCompraConSuscripcionDeberiaRetonarMontoMenos20x100to() {
 
-        Compra nuevaCompra = new Compra(new Date());
+        Compra nuevaCompra = new Compra(new Date("04/28/2018"));
         Producto revistaGente = new Periodico(100.0, "Revista", "A1");
         nuevaCompra.setProducto(revistaGente);
         CuentaCorriente ctaCte = new CuentaCorriente();

@@ -1,5 +1,5 @@
-Ejercicio Fibo3
-===========
+Ejercicio Fibonacci 4
+=====================
 
 
 Este proyecto es un ejemplo para tomar como base para los distintos proyecto de la materia.

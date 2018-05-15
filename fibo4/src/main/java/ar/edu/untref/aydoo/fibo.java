@@ -20,6 +20,7 @@ public class fibo {
             String opcionO = null;
             String opcionF = null;
             String opcionM = null;
+            String opcionNumerosPares = null;
 
 
             for (int i = 0; i < args.length - 1; i++) {
@@ -33,22 +34,25 @@ public class fibo {
                 }
                 if (subString.equals("-o")) {
                     opcionO = args[i].toString();
-
+                }
+                if (subString.equals("-n")) {
+                    opcionNumerosPares = args[i].toString();
                 }
             }
-
             int sumaDeFibonaccis = 0;
             if (opcionM != null) {
                 if (opcionM.equals("-m=s")) {
-                    for (int i = 0; i < arreglo.length; i++) {
-                        sumaDeFibonaccis += arreglo[i];
-                    }
+                    sumaDeFibonaccis = sumar((opcionNumerosPares != null), arreglo);
                 } else if (opcionM.equals("-m=l")) {
 
                 } else {
                     System.out.println("Opciones no validas.");
                     return;
                 }
+            }
+            int limiteSerie = arreglo.length;
+            if (opcionNumerosPares != null) {
+                arreglo = crearSeriePar(arreglo);
             }
 
             if (opcionF != null) {
@@ -59,7 +63,7 @@ public class fibo {
                 }
             } else {
                 opcionNoF impresionEnConsola = new opcionNoF();
-                impresionEnConsola.imprimirEnConsola(sumaDeFibonaccis, opcionO, arreglo);
+                impresionEnConsola.imprimirEnConsola(sumaDeFibonaccis, opcionO, arreglo, limiteSerie);
                 return;
             }
 
@@ -69,4 +73,58 @@ public class fibo {
 
     }
 
+    private static int[] crearSeriePar(int[] serieReal) {
+
+        int[] serieAuxiliar = new int[contarNumerosPares(serieReal)];
+        int posicion = 0;
+        for (int i = 0; i < serieReal.length; i++) {
+            if (serieReal[i] != 0 && esNumeroPar(serieReal[i])){
+                serieAuxiliar[posicion] = serieReal[i];
+                posicion++;
+            }
+        }
+        return serieAuxiliar;
+    }
+
+    private static int contarNumerosPares(int[] serieReal) {
+        int cantidadDeNrosPares = 0;
+        for (int i = 0; i < serieReal.length; i++) {
+            if (serieReal[i] != 0 && esNumeroPar(serieReal[i])){
+                cantidadDeNrosPares++;
+            }
+        }
+        return cantidadDeNrosPares;
+    }
+
+    private static int sumar(boolean esSumaDeNrosPares, int[] serie) {
+        Integer resultado = 0;
+        if (esSumaDeNrosPares) {
+            resultado = sumaSoloNumerosPares(serie);
+        } else {
+            resultado = sumaTodosLosNumeros(serie);
+        }
+        return resultado;
+    }
+
+    private static Integer sumaTodosLosNumeros(int[] serie) {
+        Integer resultado = 0;
+        for (int i = 0; i < serie.length; i++) {
+            resultado += serie[i];
+        }
+        return resultado;
+    }
+
+    private static Integer sumaSoloNumerosPares(int[] serie) {
+        Integer resultado = 0;
+        for (int i = 0; i < serie.length; i++) {
+            if(esNumeroPar(serie[i])) {
+                resultado += serie[i];
+            }
+        }
+        return resultado;
+    }
+
+    private static boolean esNumeroPar(Integer numero){
+     return (numero%2==0);
+    }
 }

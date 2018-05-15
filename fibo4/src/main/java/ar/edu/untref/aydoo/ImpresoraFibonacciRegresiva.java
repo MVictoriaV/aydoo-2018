@@ -11,7 +11,6 @@ public class ImpresoraFibonacciRegresiva implements ImpresoraFibonacci {
             }
             impresionDeLaSerie.append("\n");
         }
-        System.out.println(impresionDeLaSerie.toString());
         return impresionDeLaSerie;
     }
 }

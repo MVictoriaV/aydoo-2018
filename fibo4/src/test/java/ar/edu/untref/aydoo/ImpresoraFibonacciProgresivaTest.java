@@ -3,13 +3,13 @@ package ar.edu.untref.aydoo;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImpresoraProgresivaTest {
+public class ImpresoraFibonacciProgresivaTest {
 
     @Test
     public void imprimeSerieDeFormaProgresivaDebeSerDistintoDeNull(){
 
         int[] serieFibonacci = new arregloDeNumeros().obtenerArregloDeNumerosDeFibonacci(3);
-        ImpresoraProgresiva impresora = new ImpresoraProgresiva();
+        ImpresoraFibonacciProgresiva impresora = new ImpresoraFibonacciProgresiva();
 
         StringBuffer serieReal = impresora.imprimirSerie(serieFibonacci);
 
@@ -20,7 +20,7 @@ public class ImpresoraProgresivaTest {
     public void imprimeSerieDeFormaProgresivaDebeContenerLaLineaConValores011(){
 
         int[] serieFibonacci = new arregloDeNumeros().obtenerArregloDeNumerosDeFibonacci(3);
-        ImpresoraProgresiva impresora = new ImpresoraProgresiva();
+        ImpresoraFibonacciProgresiva impresora = new ImpresoraFibonacciProgresiva();
         final String serieEsperada = "0 1 1";
 
         StringBuffer serieReal = impresora.imprimirSerie(serieFibonacci);

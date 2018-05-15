@@ -1,7 +1,8 @@
 package ar.edu.untref.aydoo;
 
-public class ImpresoraProgresiva {
+public class ImpresoraFibonacciProgresiva implements ImpresoraFibonacci {
 
+    @Override
     public StringBuffer imprimirSerie(int[] serie) {
         StringBuffer impresionDeLaSerie = new StringBuffer();
         for (int i = 0; i < serie.length; i++) {

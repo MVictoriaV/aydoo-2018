@@ -17,7 +17,7 @@ public class ImpresoraProgresivaTest {
     }
 
     @Test
-    public void imprimeSerieDeFormaProgresivaDebeContenerLa1erLineaConValor0(){
+    public void imprimeSerieDeFormaProgresivaDebeContenerLaLineaConValores011(){
 
         int[] serieFibonacci = new arregloDeNumeros().obtenerArregloDeNumerosDeFibonacci(3);
         ImpresoraProgresiva impresora = new ImpresoraProgresiva();

@@ -15,4 +15,16 @@ public class ImpresoraProgresivaTest {
 
         Assert.assertNotNull(serieReal);
     }
+
+    @Test
+    public void imprimeSerieDeFormaProgresivaDebeContenerLa1erLineaConValor0(){
+
+        int[] serieFibonacci = new arregloDeNumeros().obtenerArregloDeNumerosDeFibonacci(3);
+        ImpresoraProgresiva impresora = new ImpresoraProgresiva();
+        final String serieEsperada = "0 1 1";
+
+        StringBuffer serieReal = impresora.imprimirSerie(serieFibonacci);
+
+        Assert.assertTrue(serieReal.toString().contains(serieEsperada));
+    }
 }

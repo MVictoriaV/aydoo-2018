@@ -1,10 +1,10 @@
 Informe sobre el proyecto fibo3
 ===============================
 
-¿cumple con la consigna fibo3?
-¿tiene suficientes tests?
-¿respeta la convenciones Java?
-¿respeta los principio SOLID? en caso que no los respete indique que principio viola y porque?
+* ¿cumple con la consigna fibo3?
+* ¿tiene suficientes tests?
+* ¿respeta la convenciones Java?
+* ¿respeta los principio SOLID? en caso que no los respete indique que principio viola y porque?
 
 El proyecto fibo3 otorgado no cumple con la consigna de impresión horizontal por consola, porque cuando imprime de forma horizontal no hace un salto de línea. Se ve la serie (la cual es correcta) pero además de dicha impresión vemos la ubicación en la que estamos parados en la consola. 
 Respecto de los test sólo hay dos, considero que no son lo suficiente. Existen más clases con otros comportamientos (con lógica dentro) que no están siendo evaluadas. Si bien hay muchos más métodos de “prueba” estos no poseen Assert, entonces no evalúa valores esperados. Sino que hace llamados al método principal y eso no es garantía de que el test haya pasado satisfactoriamente. Si lo que se pretende con ello es evaluar la impresión por consola, eso implica que por cada vez que ejecute esa clase de prueba uno deberá chequear de forma manual cada impresión. Esto claramente no son pruebas  automatizadas. Pone en evidencia la falta de uso de TDD. (Y el nombre de la clase de prueba no debería tener el siguiente patrón testFibo3 ¿qué significado tiene esa numeración que hace? Considero que ninguna aplicación).
@@ -25,5 +25,5 @@ Cuarto principio Segregación de la interfaz “I”
 La interfaz opcionO tiene mucha lógica y redundancia. Además que no tiene una única responsabilidad, este tema está más bien ligado al primer principio. No define interfaces finas. Este claro ejemplo de opcionO nos muestra la famosa y no grata “interfaz manager”.
 (Otro tema que surge en esta clase, es que tiene métodos que reciben un String que tiene como nombre opcionO mismo nombre que la clase. Esto puede ser causa de problemas porque obligas a chequear si se habla del String o de la clase).
 
-Conclusión: No es una porción de software sólida.
+Conclusión: No es una porción de software sólida. Entonces dado el poco tiempo que se tiene se procede a tocar lo mínimo y necesario para cumplir con las nuevas funcionalidades solicitadas.
 

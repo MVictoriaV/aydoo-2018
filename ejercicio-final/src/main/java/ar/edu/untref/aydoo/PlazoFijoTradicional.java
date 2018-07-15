@@ -15,8 +15,8 @@ public class PlazoFijoTradicional implements Inversion {
 
     @Override
     public Double calcularGanancia() {
-        Double ganancia = (plazoAcordado / 365) * (interes / 100d) * monto;
-        return ganancia;
+        Double plazoCalculado = (Math.floor((plazoAcordado / 365d) * 10000) / 10000);
+        return (plazoCalculado * (interes / 100d) * monto);
     }
 
     private void validarCamposDePlazoFijo(Double monto, Integer interes, Integer plazoAcordado) throws CampoIncorrectoExcepcion {

@@ -21,7 +21,7 @@ public class SimuladorFinancieroTest {
     }
 
     @Test
-    public void seObtieneLaGananciaDeUnPFTDebeRetornarCero() {
+    public void seObtieneLaGananciaDeUnPFTDebeRetornarCero() throws CampoIncorrectoExcepcion {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
         List<Inversion> inversiones = new ArrayList();
@@ -38,7 +38,7 @@ public class SimuladorFinancieroTest {
     }
 
     @Test
-    public void seHaceUnaInversionPFTYSeObtieneUnaGananciaDe50000() {
+    public void seHaceUnaInversionPFTYSeObtieneUnaGananciaDe50000() throws CampoIncorrectoExcepcion {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
         List<Inversion> inversiones = new ArrayList();

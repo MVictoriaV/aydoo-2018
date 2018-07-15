@@ -19,7 +19,7 @@ public class SimuladorFinancieroTest {
         HashMap<Double, Integer> tablaMontos = new HashMap();
         tablaImpuesto.put(TipoInversor.INDIVIDUO, tablaMontos);
     }
-
+    @Ignore
     @Test
     public void seObtieneLaGananciaDeUnPFTDebeRetornarCero() throws CampoIncorrectoExcepcion {
 

@@ -12,6 +12,10 @@ public class SimuladorFinanciero {
     }
 
     public Double obtenerGanancia(List<Inversion> inversiones) {
-        return 0d;
+        Double gananciaTotal = 0d;
+        for (Inversion inversion : inversiones) {
+            gananciaTotal += inversion.calcularGanancia();
+        }
+        return gananciaTotal;
     }
 }

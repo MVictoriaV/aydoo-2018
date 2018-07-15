@@ -105,4 +105,18 @@ public class PlazoFijoTradicionalTest {
 
         Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
     }
+
+    @Test
+    public void seCalculaLaGananciaDe250000ConUnInteresDe40PorcDiasDebeRetornar24658() throws CampoIncorrectoExcepcion {
+
+        Double monto = 250000d;
+        Integer interes = 40;
+        Integer plazoAcordado = 90;
+        Inversion pft = new PlazoFijoTradicional(monto, interes, plazoAcordado);
+
+        Double gananciaReal = pft.calcularGanancia();
+        Double gananciaEsperada = 24658d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
+    }
 }

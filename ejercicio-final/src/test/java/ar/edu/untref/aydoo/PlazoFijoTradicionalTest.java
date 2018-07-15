@@ -27,4 +27,13 @@ public class PlazoFijoTradicionalTest {
         Integer plazoAcordado = 365;
         new PlazoFijoTradicional(monto, interes, plazoAcordado);
     }
+
+    @Test(expected = CampoIncorrectoExcepcion.class)
+    public void lanzaExcepcionCuandoIngresaInteresConValorMenos1() throws CampoIncorrectoExcepcion{
+
+        Double monto = 10000d;
+        Integer interes = -1;
+        Integer plazoAcordado = 365;
+        new PlazoFijoTradicional(monto, interes, plazoAcordado);
+    }
 }

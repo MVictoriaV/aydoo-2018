@@ -7,7 +7,7 @@ public class PlazoFijoTradicional implements Inversion {
     private Integer plazoAcordado;
 
     public PlazoFijoTradicional(Double monto, Integer interes, Integer plazoAcordado) throws CampoIncorrectoExcepcion {
-        validarCamposDeEntrada(monto, interes, plazoAcordado);
+        validarCamposDePlazoFijo(monto, interes, plazoAcordado);
         this.monto = monto;
         this.interes = interes;
         this.plazoAcordado = plazoAcordado;
@@ -19,9 +19,12 @@ public class PlazoFijoTradicional implements Inversion {
         return ganancia;
     }
 
-    private void validarCamposDeEntrada(Double monto, Integer interes, Integer plazoAcordado) throws CampoIncorrectoExcepcion {
+    private void validarCamposDePlazoFijo(Double monto, Integer interes, Integer plazoAcordado) throws CampoIncorrectoExcepcion {
         if (monto == null || monto <= 0d) {
             throw new CampoIncorrectoExcepcion("El monto debe ser mayor que 0.");
+        }
+        if (interes == null || interes <= 0 || interes > 100) {
+            throw new CampoIncorrectoExcepcion("El interes debe ser de 1 a 100");
         }
     }
 }

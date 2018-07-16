@@ -27,7 +27,11 @@ public class SimuladorFinanciero {
         return gananciaTotal;
     }
 
-    public Double aplicarImpuesto(TipoInversor tipoInversor, Double ganancia) {
+    public Double aplicarImpuesto(TipoInversor tipoInversor, Double ganancia) throws GananciaNegativaExcepcion {
+
+        if (ganancia < 0d) {
+            throw new GananciaNegativaExcepcion();
+        }
         Double montoDelImpuesto = 0d;
         if (ganancia > 0d && tablaImpuesto.containsKey(tipoInversor)) {
             Integer impuesto = this.obtenerImpuestoACobrar(tipoInversor, ganancia);

@@ -57,7 +57,7 @@ public class SimuladorFinancieroTest {
     }
 
     @Test
-    public void noSeAplicaImpuestoAIndividuoCuandoSuGananciaEs5000() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
+    public void noSeAplicaImpuestoAIndividuoCuandoSuGananciaEs5000() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion, GananciaNegativaExcepcion {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
         List<Inversion> inversiones = new ArrayList();
@@ -78,7 +78,7 @@ public class SimuladorFinancieroTest {
     }
 
     @Test
-    public void seAplicaImpuestoDel5PorcAIndividuoCuandoSuGananciaEs50000() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
+    public void seAplicaImpuestoDel5PorcAIndividuoCuandoSuGananciaEs50000() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion, GananciaNegativaExcepcion {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
         List<Inversion> inversiones = new ArrayList();
@@ -99,7 +99,7 @@ public class SimuladorFinancieroTest {
     }
 
     @Test
-    public void seAplicaImpuestoDel10PorcAEmpresaCuandoSuGananciaEs50000() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
+    public void seAplicaImpuestoDel10PorcAEmpresaCuandoSuGananciaEs50000() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion, GananciaNegativaExcepcion {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
         List<Inversion> inversiones = new ArrayList();
@@ -120,7 +120,7 @@ public class SimuladorFinancieroTest {
     }
 
     @Test
-    public void cuandoGananciaEsCeroElImpuestoAplicadoTambienDebeSerlo() throws CampoIncorrectoExcepcion {
+    public void cuandoGananciaEsCeroElImpuestoAplicadoTambienDebeSerlo() throws CampoIncorrectoExcepcion, GananciaNegativaExcepcion {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
 
@@ -139,6 +139,16 @@ public class SimuladorFinancieroTest {
         List<Inversion> inversiones = null;
 
         simulador.obtenerGanancia(inversiones);
+    }
+
+    @Test(expected = GananciaNegativaExcepcion.class)
+    public void alQuererObtenerElImpuestoConUnaGananciaMenos1DeberiaLanzarExcepcion() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion, GananciaNegativaExcepcion {
+
+        SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
+
+        Double gananciaNegativa = -1d;
+
+        simulador.aplicarImpuesto(TipoInversor.EMPRESA, gananciaNegativa);
     }
 
     private TreeMap<Double, Integer> cargarMontosIndividuo() {

@@ -119,6 +119,19 @@ public class SimuladorFinancieroTest {
         Assert.assertEquals(impuestoEsperado, impuestoReal, 0.1);
     }
 
+    @Test
+    public void cuandoGananciaEsCeroElImpuestoAplicadoTambienDebeSerlo() throws CampoIncorrectoExcepcion {
+
+        SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
+
+        Double gananciaCero = 0d;
+
+        Double impuestoReal = simulador.aplicarImpuesto(TipoInversor.EMPRESA, gananciaCero);
+        Double impuestoEsperado = 0d;
+
+        Assert.assertEquals(impuestoEsperado, impuestoReal, 0.1);
+    }
+
     private TreeMap<Double, Integer> cargarMontosIndividuo() {
         TreeMap<Double, Integer> mapaMontos = new TreeMap();
         mapaMontos.put(50000d, 0);

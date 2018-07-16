@@ -23,9 +23,8 @@ public class SimuladorFinanciero {
     }
 
     public Double aplicarImpuesto(TipoInversor tipoInversor, Double ganancia) {
-
         Double montoDelImpuesto = 0d;
-        if (tablaImpuesto.containsKey(tipoInversor)) {
+        if (ganancia > 0d && tablaImpuesto.containsKey(tipoInversor)) {
             Integer impuesto = this.obtenerImpuestoACobrar(tipoInversor, ganancia);
             montoDelImpuesto = calcularMontoSegunImpuesto(impuesto, ganancia);
         }

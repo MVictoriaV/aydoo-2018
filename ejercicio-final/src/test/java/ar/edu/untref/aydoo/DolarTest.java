@@ -36,4 +36,13 @@ public class DolarTest {
         Double cotizacionFinal = 28d;
         new Dolar(monto, cotizacionInicial, cotizacionFinal);
     }
+
+    @Test(expected = CampoIncorrectoExcepcion.class)
+    public void lanzaExcepcionCuandoIngresaCotizacionFinalConValorMenos1() throws CampoIncorrectoExcepcion{
+
+        Double monto = 100d;
+        Double cotizacionInicial = 20d;
+        Double cotizacionFinal = -1d;
+        new Dolar(monto, cotizacionInicial, cotizacionFinal);
+    }
 }

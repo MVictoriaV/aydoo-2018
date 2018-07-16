@@ -45,4 +45,18 @@ public class DolarTest {
         Double cotizacionFinal = -1d;
         new Dolar(monto, cotizacionInicial, cotizacionFinal);
     }
+
+    @Test
+    public void gananciaEs0CuandoCotizacionInicialYFinalTienenMismoValor20() throws CampoIncorrectoExcepcion {
+
+        Double monto = 1000d;
+        Double cotizacionInicial = 20d;
+        Double cotizacionFinal = 20d;
+        Inversion inversionDolar = new Dolar(monto, cotizacionInicial, cotizacionFinal);
+
+        Double gananciaReal = inversionDolar.calcularGanancia();
+        Double gananciaEsperada = 0d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.01);
+    }
 }

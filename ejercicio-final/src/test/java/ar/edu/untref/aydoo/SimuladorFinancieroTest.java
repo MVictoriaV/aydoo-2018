@@ -18,6 +18,8 @@ public class SimuladorFinancieroTest {
         this.tablaImpuesto = new TreeMap();
         TreeMap<Double, Integer> tablaMontos = cargarMontosIndividuo();
         tablaImpuesto.put(TipoInversor.INDIVIDUO, tablaMontos);
+        tablaMontos = cargarMontosEmpresa();
+        tablaImpuesto.put(TipoInversor.EMPRESA, tablaMontos);
     }
 
     @Test
@@ -96,12 +98,43 @@ public class SimuladorFinancieroTest {
         Assert.assertEquals(impuestoEsperado, impuestoReal, 0.1);
     }
 
+    @Test
+    public void seAplicaImpuestoDel10PorcAEmpresaCuandoSuGananciaEs50000() throws CampoIncorrectoExcepcion {
+
+        SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
+        List<Inversion> inversiones = new ArrayList();
+        Double monto = 500000d;
+        Integer interes = 10;
+        Integer plazoAcordado = 365;
+        Inversion pft = new PlazoFijoTradicional(monto, interes, plazoAcordado);
+        inversiones.add(pft);
+
+        Double gananciaReal = simulador.obtenerGanancia(inversiones);
+        Double gananciaEsperada = 50000d;
+
+        Double impuestoReal = simulador.aplicarImpuesto(TipoInversor.EMPRESA, gananciaReal);
+        Double impuestoEsperado = 5000d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
+        Assert.assertEquals(impuestoEsperado, impuestoReal, 0.1);
+    }
+
     private TreeMap<Double, Integer> cargarMontosIndividuo() {
         TreeMap<Double, Integer> mapaMontos = new TreeMap();
         mapaMontos.put(50000d, 0);
-        mapaMontos.put(1000000d, 5);
-        mapaMontos.put(5000000d, 8);
+        mapaMontos.put(100000d, 5);
+        mapaMontos.put(500000d, 8);
         mapaMontos.put(-1d, 10);
+        return mapaMontos;
+    }
+
+    private TreeMap<Double, Integer> cargarMontosEmpresa() {
+        TreeMap<Double, Integer> mapaMontos = new TreeMap();
+        mapaMontos.put(20000d, 0);
+        mapaMontos.put(50000d, 5);
+        mapaMontos.put(100000d, 10);
+        mapaMontos.put(500000d, 15);
+        mapaMontos.put(-1d, 20);
         return mapaMontos;
     }
 }

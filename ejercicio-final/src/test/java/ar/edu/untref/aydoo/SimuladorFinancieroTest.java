@@ -170,9 +170,8 @@ public class SimuladorFinancieroTest {
         Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
     }
 
-    @Ignore
     @Test
-    public void seInvierteEnDolarDebeRetornarUnaGananciaDe400() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
+    public void seInvierteEnDolaresDeberiaRetornarUnaGananciaDe400() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
         List<Inversion> inversiones = new ArrayList();

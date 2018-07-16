@@ -14,7 +14,12 @@ public class SimuladorFinanciero {
         this.tablaImpuesto = tablaImpuesto;
     }
 
-    public Double obtenerGanancia(List<Inversion> inversiones) {
+    public Double obtenerGanancia(List<Inversion> inversiones) throws InversionInexistenExcepcion {
+
+        if (inversiones == null || inversiones.isEmpty()) {
+            throw new InversionInexistenExcepcion();
+        }
+
         Double gananciaTotal = 0d;
         for (Inversion inversion : inversiones) {
             gananciaTotal += inversion.calcularGanancia();

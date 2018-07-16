@@ -151,6 +151,24 @@ public class SimuladorFinancieroTest {
         simulador.aplicarImpuesto(TipoInversor.EMPRESA, gananciaNegativa);
     }
 
+    @Test
+    public void seObtieneLaGananciaDeInversionDolarCeroCuandoLasCotizacionesSonIguales() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
+
+        SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
+        List<Inversion> inversiones = new ArrayList();
+        Double monto = 1000d;
+        Double cotizacionInicial = 20d;
+        Double cotizacionFinal = 20d;
+
+        Inversion inversionDolar = new Dolar(monto, cotizacionInicial, cotizacionFinal);
+        inversiones.add(inversionDolar);
+
+        Double gananciaReal = simulador.obtenerGanancia(inversiones);
+        Double gananciaEsperada = 0d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
+    }
+
     private TreeMap<Double, Integer> cargarMontosIndividuo() {
         TreeMap<Double, Integer> mapaMontos = new TreeMap();
         mapaMontos.put(50000d, 0);

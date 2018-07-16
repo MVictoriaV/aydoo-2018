@@ -18,4 +18,13 @@ public class DolarTest {
 
         Assert.assertEquals(gananciaEsperada, gananciaReal, 0.01);
     }
+
+    @Test(expected = CampoIncorrectoExcepcion.class)
+    public void lanzaExcepcionCuandoIngresaMontoConValor0() throws CampoIncorrectoExcepcion{
+
+        Double monto = 0d;
+        Double cotizacionInicial = 20d;
+        Double cotizacionFinal = 28d;
+        new Dolar(monto, cotizacionInicial, cotizacionFinal);
+    }
 }

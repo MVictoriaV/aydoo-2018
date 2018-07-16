@@ -24,13 +24,21 @@ public class SimuladorFinanciero {
 
     public Double aplicarImpuesto(TipoInversor tipoInversor, Double ganancia) {
 
+        Double montoDelImpuesto = 0d;
         if (tablaImpuesto.containsKey(tipoInversor)) {
             Integer impuesto = this.obtenerImpuestoACobrar(tipoInversor, ganancia);
+            montoDelImpuesto = calcularMontoSegunImpuesto(impuesto, ganancia);
 
         }
-        return 0d;
+        return montoDelImpuesto;
     }
 
+    private Double calcularMontoSegunImpuesto(Integer impuesto, Double ganancia) {
+        if (impuesto == 0){
+            return 0d;
+        }
+        return (ganancia * impuesto) / 100d;
+    }
 
     private Integer obtenerImpuestoACobrar(TipoInversor tipoInversor, Double ganancia) {
         Optional<Double> optional = tablaImpuesto.get(tipoInversor).keySet().stream().filter(montoLambda ->

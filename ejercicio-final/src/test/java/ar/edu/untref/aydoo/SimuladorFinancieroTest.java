@@ -75,6 +75,27 @@ public class SimuladorFinancieroTest {
         Assert.assertEquals(impuestoEsperado, impuestoReal, 0.1);
     }
 
+    @Test
+    public void seAplicaImpuestoDel5PorcAIndividuoCuandoSuGananciaEs50000() throws CampoIncorrectoExcepcion {
+
+        SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
+        List<Inversion> inversiones = new ArrayList();
+        Double monto = 500000d;
+        Integer interes = 10;
+        Integer plazoAcordado = 365;
+        Inversion pft = new PlazoFijoTradicional(monto, interes, plazoAcordado);
+        inversiones.add(pft);
+
+        Double gananciaReal = simulador.obtenerGanancia(inversiones);
+        Double gananciaEsperada = 50000d;
+
+        Double impuestoReal = simulador.aplicarImpuesto(TipoInversor.INDIVIDUO, gananciaReal);
+        Double impuestoEsperado = 2500d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
+        Assert.assertEquals(impuestoEsperado, impuestoReal, 0.1);
+    }
+
     private TreeMap<Double, Integer> cargarMontosIndividuo() {
         TreeMap<Double, Integer> mapaMontos = new TreeMap();
         mapaMontos.put(50000d, 0);

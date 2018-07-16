@@ -73,4 +73,18 @@ public class DolarTest {
 
         Assert.assertEquals(gananciaEsperada, gananciaReal, 0.01);
     }
+
+    @Test
+    public void gananciaEs8333CuandoCotizacionInicial24YFinal28() throws CampoIncorrectoExcepcion {
+
+        Double monto = 50000d;
+        Double cotizacionInicial = 24d;
+        Double cotizacionFinal = 28d;
+        Inversion inversionDolar = new Dolar(monto, cotizacionInicial, cotizacionFinal);
+
+        Double gananciaReal = inversionDolar.calcularGanancia();
+        Double gananciaEsperada = 8333.33d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.01);
+    }
 }

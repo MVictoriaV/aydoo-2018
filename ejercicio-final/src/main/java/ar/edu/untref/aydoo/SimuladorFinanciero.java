@@ -31,6 +31,7 @@ public class SimuladorFinanciero {
         return 0d;
     }
 
+
     private Integer obtenerImpuestoACobrar(TipoInversor tipoInversor, Double ganancia) {
         Optional<Double> optional = tablaImpuesto.get(tipoInversor).keySet().stream().filter(montoLambda ->
                 (ganancia < montoLambda)).findFirst();

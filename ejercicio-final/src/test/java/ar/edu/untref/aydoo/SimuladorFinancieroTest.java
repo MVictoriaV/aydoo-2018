@@ -55,24 +55,24 @@ public class SimuladorFinancieroTest {
     }
 
     @Test
-    public void seCalculaElImpuesto() throws CampoIncorrectoExcepcion {
+    public void noSeAplicaImpuestoAIndividuoCuandoSuGananciaEs5000() throws CampoIncorrectoExcepcion {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
         List<Inversion> inversiones = new ArrayList();
-        Double monto = 1000d;
-        Integer interes = 2;
-        Integer plazoAcordado = 10;
-
+        Double monto = 50000d;
+        Integer interes = 10;
+        Integer plazoAcordado = 365;
         Inversion pft = new PlazoFijoTradicional(monto, interes, plazoAcordado);
         inversiones.add(pft);
 
-        Double gananciaTotal = simulador.obtenerGanancia(inversiones);
+        Double gananciaReal = simulador.obtenerGanancia(inversiones);
+        Double gananciaEsperada = 5000d;
 
-        Double impuestoReal = simulador.aplicarImpuesto(TipoInversor.INDIVIDUO, gananciaTotal);
+        Double impuestoReal = simulador.aplicarImpuesto(TipoInversor.INDIVIDUO, gananciaReal);
         Double impuestoEsperado = 0d;
 
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
         Assert.assertEquals(impuestoEsperado, impuestoReal, 0.1);
-
     }
 
     private TreeMap<Double, Integer> cargarMontosIndividuo() {

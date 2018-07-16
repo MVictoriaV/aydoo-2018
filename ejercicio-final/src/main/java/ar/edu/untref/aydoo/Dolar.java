@@ -14,6 +14,6 @@ public class Dolar implements Inversion {
 
     @Override
     public Double calcularGanancia() {
-        return 0d;
+        return ((monto / cotizacionInicial) * cotizacionFinal) - monto;
     }
 }

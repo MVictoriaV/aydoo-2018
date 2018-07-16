@@ -2,6 +2,7 @@ package ar.edu.untref.aydoo;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -165,6 +166,25 @@ public class SimuladorFinancieroTest {
 
         Double gananciaReal = simulador.obtenerGanancia(inversiones);
         Double gananciaEsperada = 0d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
+    }
+
+    @Ignore
+    @Test
+    public void seInvierteEnDolarDebeRetornarUnaGananciaDe400() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
+
+        SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
+        List<Inversion> inversiones = new ArrayList();
+        Double monto = 1000d;
+        Double cotizacionInicial = 20d;
+        Double cotizacionFinal = 28d;
+
+        Inversion inversionDolar = new Dolar(monto, cotizacionInicial, cotizacionFinal);
+        inversiones.add(inversionDolar);
+
+        Double gananciaReal = simulador.obtenerGanancia(inversiones);
+        Double gananciaEsperada = 400d;
 
         Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
     }

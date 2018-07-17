@@ -12,7 +12,7 @@ public class PlazoFijoPrecancelableTest {
         Integer interes = 10;
         Integer plazoAcordado = 90;
         Integer plazoReal = 45;
-        Inversion pfp = new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
+        PlazoFijoPrecancelable pfp = new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
 
         Double gananciaReal = pfp.calcularGanancia();
         Double gananciaEsperada = 1232.9d;
@@ -27,7 +27,7 @@ public class PlazoFijoPrecancelableTest {
         Integer interes = 15;
         Integer plazoAcordado = 90;
         Integer plazoReal = 30;
-        Inversion pfp = new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
+        PlazoFijoPrecancelable pfp = new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
 
         Double gananciaReal = pfp.calcularGanancia();
         Double gananciaEsperada = 3698.6d;
@@ -43,5 +43,50 @@ public class PlazoFijoPrecancelableTest {
         Integer plazoAcordado = 365;
         Integer plazoReal = 365;
         new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
+    }
+
+    @Test
+    public void cuandoPlazoRealEsIgualAPlazoAcordadoNoDebeReducirseALaMitadLaGanancia() throws CampoIncorrectoExcepcion{
+
+        Double monto = 1000d;
+        Integer interes = 50;
+        Integer plazoAcordado = 365;
+        Integer plazoReal = 365;
+        PlazoFijoPrecancelable pfp = new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
+
+        Double gananciaReal = pfp.calcularGanancia();
+        Double gananciaEsperada = 500d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
+    }
+
+    @Test
+    public void cuandoPlazoRealEsMayorAPlazoAcordadoNoDebeReducirseALaMitadLaGanancia() throws CampoIncorrectoExcepcion{
+
+        Double monto = 1000d;
+        Integer interes = 50;
+        Integer plazoAcordado = 365;
+        Integer plazoReal = 400;
+        PlazoFijoPrecancelable pfp = new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
+
+        Double gananciaReal = pfp.calcularGanancia();
+        Double gananciaEsperada = 500d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
+    }
+
+    @Test
+    public void cuandoPlazoRealEsMenorAPlazoAcordadoDebeReducirseALaMitadLaGanancia() throws CampoIncorrectoExcepcion{
+
+        Double monto = 1000d;
+        Integer interes = 50;
+        Integer plazoAcordado = 365;
+        Integer plazoReal = 300;
+        PlazoFijoPrecancelable pfp = new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
+
+        Double gananciaReal = pfp.calcularGanancia();
+        Double gananciaEsperada = 250d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
     }
 }

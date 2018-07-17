@@ -11,7 +11,9 @@ public class PlazoFijoPrecancelable extends PlazoFijoTradicional {
 
     @Override
     public Double calcularGanancia() {
-        Double valorSegunDifPlazos = (super.getPlazoAcordado() - plazoReal == 0) ? 1d : 0.5d;
-        return ((super.getPlazoAcordado() / 365d) * (super.getInteres() / 100d) * super.getMonto() * valorSegunDifPlazos);
+        if (plazoReal >= super.getPlazoAcordado()) {
+            return super.calcularGanancia();
+        }
+        return ((super.getPlazoAcordado() / 365d) * (super.getInteres() / 100d) * super.getMonto() * 0.5d);
     }
 }

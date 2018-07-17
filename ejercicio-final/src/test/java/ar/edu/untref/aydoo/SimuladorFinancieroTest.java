@@ -206,6 +206,21 @@ public class SimuladorFinancieroTest {
         Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
     }
 
+    @Test
+    public void seObtieneLaSumatoriaDeLasGananciasDeLas3Inversiones() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
+
+        SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
+        List<Inversion> inversiones = new ArrayList();
+        inversiones.add(crearInversionDolar());
+        inversiones.add(crearInversionPlazoFijoTradicional());
+        inversiones.add(crearInversionPlazoFijoPrecancelable());
+
+        Double gananciaReal = simulador.obtenerGanancia(inversiones);
+        Double gananciaEsperada = 350d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
+    }
+
     private TreeMap<Double, Integer> cargarMontosIndividuo() {
         TreeMap<Double, Integer> mapaMontos = new TreeMap();
         mapaMontos.put(50000d, 0);
@@ -223,5 +238,17 @@ public class SimuladorFinancieroTest {
         mapaMontos.put(500000d, 15);
         mapaMontos.put(-1d, 20);
         return mapaMontos;
+    }
+
+    private Dolar crearInversionDolar() throws CampoIncorrectoExcepcion {
+        return new Dolar(1000d, 20d, 24d);
+    }
+
+    private PlazoFijoTradicional crearInversionPlazoFijoTradicional() throws CampoIncorrectoExcepcion {
+        return new PlazoFijoTradicional(1000d, 10, 365);
+    }
+
+    private PlazoFijoPrecancelable crearInversionPlazoFijoPrecancelable() throws CampoIncorrectoExcepcion {
+        return new PlazoFijoPrecancelable(1000d, 10, 365, 300);
     }
 }

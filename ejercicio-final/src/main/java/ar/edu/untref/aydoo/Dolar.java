@@ -18,6 +18,10 @@ public class Dolar implements Inversion {
         return ((monto / cotizacionInicial) * cotizacionFinal) - monto;
     }
 
+    @Override
+    public String getTipoInversion() {
+        return "dol";
+    }
 
     private void validar(Double monto, Double cotizacionInicial, Double cotizacionFinal) throws CampoIncorrectoExcepcion {
         if (monto == null || monto <= 0d) {

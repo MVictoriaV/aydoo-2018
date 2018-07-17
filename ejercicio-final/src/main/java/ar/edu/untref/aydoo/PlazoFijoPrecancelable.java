@@ -18,6 +18,11 @@ public class PlazoFijoPrecancelable extends PlazoFijoTradicional {
         return ((super.getPlazoAcordado() / 365d) * (super.getInteres() / 100d) * super.getMonto() * 0.5d);
     }
 
+    @Override
+    public String getTipoInversion() {
+        return "pfp";
+    }
+
     private void validar(Integer plazoReal) throws CampoIncorrectoExcepcion {
         if (plazoReal == null || plazoReal <= 0) {
             throw new CampoIncorrectoExcepcion("El plazo real no puede ser cero o negativo");

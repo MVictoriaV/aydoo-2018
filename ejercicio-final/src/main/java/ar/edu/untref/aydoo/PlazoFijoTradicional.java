@@ -20,6 +20,11 @@ public class PlazoFijoTradicional implements Inversion {
         return (plazoCalculado * interesCalculado * monto);
     }
 
+    @Override
+    public String getTipoInversion() {
+        return "pft";
+    }
+
     public Double getMonto() {
         return monto;
     }

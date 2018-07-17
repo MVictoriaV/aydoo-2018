@@ -6,6 +6,7 @@ public class PlazoFijoPrecancelable extends PlazoFijoTradicional {
 
     public PlazoFijoPrecancelable(Double monto, Integer interes, Integer plazoAcordado, Integer plazoReal) throws CampoIncorrectoExcepcion {
         super(monto, interes, plazoAcordado);
+        validar(plazoReal);
         this.plazoReal = plazoReal;
     }
 
@@ -15,5 +16,11 @@ public class PlazoFijoPrecancelable extends PlazoFijoTradicional {
             return super.calcularGanancia();
         }
         return ((super.getPlazoAcordado() / 365d) * (super.getInteres() / 100d) * super.getMonto() * 0.5d);
+    }
+
+    private void validar(Integer plazoReal) throws CampoIncorrectoExcepcion {
+        if (plazoReal == null || plazoReal <= 0) {
+            throw new CampoIncorrectoExcepcion("El plazo real no puede ser cero o negativo");
+        }
     }
 }

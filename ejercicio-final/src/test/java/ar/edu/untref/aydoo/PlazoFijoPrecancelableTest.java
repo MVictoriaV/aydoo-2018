@@ -89,4 +89,14 @@ public class PlazoFijoPrecancelableTest {
 
         Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
     }
+
+    @Test(expected = CampoIncorrectoExcepcion.class)
+    public void lanzaExcepcionCuandoIngresaPlazoRealConValorMenos1() throws CampoIncorrectoExcepcion{
+
+        Double monto = 10000d;
+        Integer interes = 10;
+        Integer plazoAcordado = 365;
+        Integer plazoReal = -1;
+        new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
+    }
 }

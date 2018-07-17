@@ -188,6 +188,24 @@ public class SimuladorFinancieroTest {
         Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
     }
 
+    @Test
+    public void seObtieneLaGananciaDeUnPFPDebeRetornarCero() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
+
+        SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
+        List<Inversion> inversiones = new ArrayList();
+        Double monto = 1000d;
+        Integer interes = 2;
+        Integer plazoAcordado = 90;
+        Integer plazoReal = 30;
+        PlazoFijoTradicional pfp = new PlazoFijoPrecancelable(monto, interes, plazoAcordado, plazoReal);
+        inversiones.add(pfp);
+
+        Double gananciaReal = simulador.obtenerGanancia(inversiones);
+        Double gananciaEsperada = 0d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
+    }
+
     private TreeMap<Double, Integer> cargarMontosIndividuo() {
         TreeMap<Double, Integer> mapaMontos = new TreeMap();
         mapaMontos.put(50000d, 0);

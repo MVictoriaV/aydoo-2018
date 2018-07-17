@@ -20,6 +20,18 @@ public class PlazoFijoTradicional implements Inversion {
         return (plazoCalculado * interesCalculado * monto);
     }
 
+    public Double getMonto() {
+        return monto;
+    }
+
+    public Integer getInteres() {
+        return interes;
+    }
+
+    public Integer getPlazoAcordado() {
+        return plazoAcordado;
+    }
+
     private void validarCamposDePlazoFijo(Double monto, Integer interes, Integer plazoAcordado) throws CampoIncorrectoExcepcion {
         if (monto == null || monto <= 0d) {
             throw new CampoIncorrectoExcepcion("El monto debe ser mayor que 0");

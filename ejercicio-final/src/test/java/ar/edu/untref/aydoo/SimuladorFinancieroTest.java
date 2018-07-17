@@ -188,6 +188,7 @@ public class SimuladorFinancieroTest {
         Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
     }
 
+    @Ignore
     @Test
     public void seObtieneLaGananciaDeUnPFPDebeRetornarCero() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion {
 
@@ -203,7 +204,7 @@ public class SimuladorFinancieroTest {
         Double gananciaReal = simulador.obtenerGanancia(inversiones);
         Double gananciaEsperada = 0d;
 
-        Assert.assertEquals(gananciaEsperada, gananciaReal, 1);
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
     }
 
     private TreeMap<Double, Integer> cargarMontosIndividuo() {

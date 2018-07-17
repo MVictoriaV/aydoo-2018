@@ -211,9 +211,9 @@ public class SimuladorFinancieroTest {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
         List<Inversion> inversiones = new ArrayList();
-        inversiones.add(crearInversionDolar());
-        inversiones.add(crearInversionPlazoFijoTradicional());
-        inversiones.add(crearInversionPlazoFijoPrecancelable());
+        inversiones.add(crearInversionDolar(1000d));
+        inversiones.add(crearInversionPlazoFijoTradicional(1000d));
+        inversiones.add(crearInversionPlazoFijoPrecancelable(1000d));
 
         Double gananciaReal = simulador.obtenerGanancia(inversiones);
         Double gananciaEsperada = 350d;
@@ -222,19 +222,38 @@ public class SimuladorFinancieroTest {
     }
 
     @Test
-    public void seObtieneImpuesto0DeLaGananciaInferiorDeLas3Inversiones() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion, GananciaNegativaExcepcion {
+    public void seObtieneImpuesto0DeUnaGananciaInferiorSegunTablaImpuesto() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion, GananciaNegativaExcepcion {
 
         SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
         List<Inversion> inversiones = new ArrayList();
-        inversiones.add(crearInversionDolar());
-        inversiones.add(crearInversionPlazoFijoTradicional());
-        inversiones.add(crearInversionPlazoFijoPrecancelable());
+        inversiones.add(crearInversionDolar(1000d));
+        inversiones.add(crearInversionPlazoFijoTradicional(1000d));
+        inversiones.add(crearInversionPlazoFijoPrecancelable(1000d));
 
         Double gananciaReal = simulador.obtenerGanancia(inversiones);
         Double gananciaEsperada = 350d;
 
         Double impuestoReal = simulador.aplicarImpuesto(TipoInversor.INDIVIDUO, gananciaReal);
         Double impuestoEsperado = 0d;
+
+        Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
+        Assert.assertEquals(impuestoEsperado, impuestoReal, 0.1);
+    }
+
+    @Test
+    public void aplicaImpuestoDel5PorcAEmpresaCuandoSuGananciaEstaEntre20MilY50Mil() throws CampoIncorrectoExcepcion, InversionInexistenExcepcion, GananciaNegativaExcepcion {
+
+        SimuladorFinanciero simulador = new SimuladorFinanciero(tablaImpuesto);
+        List<Inversion> inversiones = new ArrayList();
+        inversiones.add(crearInversionDolar(100000d));
+        inversiones.add(crearInversionPlazoFijoTradicional(100000d));
+        inversiones.add(crearInversionPlazoFijoPrecancelable(20000d));
+
+        Double gananciaReal = simulador.obtenerGanancia(inversiones);
+        Double gananciaEsperada = 31000d;
+
+        Double impuestoReal = simulador.aplicarImpuesto(TipoInversor.EMPRESA, gananciaReal);
+        Double impuestoEsperado = 1550d;
 
         Assert.assertEquals(gananciaEsperada, gananciaReal, 0.1);
         Assert.assertEquals(impuestoEsperado, impuestoReal, 0.1);
@@ -259,15 +278,15 @@ public class SimuladorFinancieroTest {
         return mapaMontos;
     }
 
-    private Dolar crearInversionDolar() throws CampoIncorrectoExcepcion {
-        return new Dolar(1000d, 20d, 24d);
+    private Dolar crearInversionDolar(Double monto) throws CampoIncorrectoExcepcion {
+        return new Dolar(monto, 20d, 24d);
     }
 
-    private PlazoFijoTradicional crearInversionPlazoFijoTradicional() throws CampoIncorrectoExcepcion {
-        return new PlazoFijoTradicional(1000d, 10, 365);
+    private PlazoFijoTradicional crearInversionPlazoFijoTradicional(Double monto) throws CampoIncorrectoExcepcion {
+        return new PlazoFijoTradicional(monto, 10, 365);
     }
 
-    private PlazoFijoPrecancelable crearInversionPlazoFijoPrecancelable() throws CampoIncorrectoExcepcion {
-        return new PlazoFijoPrecancelable(1000d, 10, 365, 300);
+    private PlazoFijoPrecancelable crearInversionPlazoFijoPrecancelable(Double monto) throws CampoIncorrectoExcepcion {
+        return new PlazoFijoPrecancelable(monto, 10, 365, 300);
     }
 }

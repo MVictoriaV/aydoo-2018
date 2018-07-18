@@ -11,17 +11,13 @@ public class Aplicacion {
 
     public static final void main(final String[] args) {
         try {
-            if (args == null || args.length == 0) {
-                throw new CantidadArgumentosInvalidaExcepcion();
-            }
+            validarArgumentos(args);
+
             String inversor = args[0];
-            if (!(inversor.matches("ind|emp"))) {
-                throw new InversorInexistenteExcepcion();
-            }
-            List<Inversion> inversiones = new ArrayList();
-            for (int i = 1; i < args.length; i++) {
-                crearInversion(args[i], inversiones);
-            }
+            validarArgumentoInversor(inversor);
+
+            List<Inversion> inversiones = crearListaInversiones(args);
+
             TipoInversor tipoInversor = inversor.matches("emp") ? TipoInversor.EMPRESA : TipoInversor.INDIVIDUO;
             SimuladorFinanciero simulador = crearSimuladorFinanciero();
 
@@ -32,6 +28,26 @@ public class Aplicacion {
 
         } catch (Exception excepcion) {
             System.out.println(excepcion.getMessage());
+        }
+    }
+
+    private static List<Inversion> crearListaInversiones(String[] args) throws CantidadArgumentosInvalidaExcepcion, CampoIncorrectoExcepcion, ValorInversionIncorrectoExcepcion, InversionInexistenExcepcion {
+        List<Inversion> inversiones = new ArrayList();
+        for (int i = 1; i < args.length; i++) {
+            crearInversion(args[i], inversiones);
+        }
+        return inversiones;
+    }
+
+    private static void validarArgumentoInversor(String inversor) throws InversorInexistenteExcepcion {
+        if (!(inversor.matches("ind|emp"))) {
+            throw new InversorInexistenteExcepcion();
+        }
+    }
+
+    private static void validarArgumentos(String[] args) throws CantidadArgumentosInvalidaExcepcion {
+        if (args == null || args.length == 0) {
+            throw new CantidadArgumentosInvalidaExcepcion();
         }
     }
 

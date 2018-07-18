@@ -12,11 +12,11 @@ public class Aplicacion {
     public static final void main(final String[] args) {
         try {
             if (args == null || args.length == 0) {
-                throw new Exception("Crear excepcion de sin argumentos");
+                throw new CantidadArgumentosInvalidaExcepcion();
             }
             String inversor = args[0];
             if (!(inversor.matches("ind|emp"))) {
-                throw new Exception("Crear excepcion de una inversion");
+                throw new InversorInexistenteExcepcion();
             }
             List<Inversion> inversiones = new ArrayList();
             for (int i = 1; i < args.length; i++) {

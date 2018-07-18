@@ -31,7 +31,7 @@ public class CreadorInversion {
                 inversion = crearDolar();
                 break;
             default:
-                throw new InversionInexistenExcepcion("Sin inversion, inversion nula. Debe tener al menos una inversion");
+                throw new InversionInexistenExcepcion("Inversion inexistente");
         }
         return inversion;
     }

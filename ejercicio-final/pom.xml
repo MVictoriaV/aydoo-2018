@@ -102,7 +102,7 @@
                   <archive>
                     <manifest>
                       <addClasspath>true</addClasspath>
-                      <mainClass>ar.edu.untref.aydoo.Program</mainClass>
+                      <mainClass>ar.edu.untref.aydoo.Aplicacion</mainClass>
                     </manifest>
                   </archive>
                 </configuration>

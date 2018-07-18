@@ -6,7 +6,7 @@ import org.junit.Test;
 public class CreadorInversionTest {
 
     @Test
-    public void seCreaUnaInversionDelTipoPFTCuandoRecibePft() throws ValorInversionIncorrectoExcepcion, CampoIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion {
+    public void seCreaUnaInversionDelTipoPFTCuandoRecibePft() throws ValorInversionIncorrectoExcepcion, CampoIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion, InversionInexistenExcepcion {
 
         String[] argumentos = new String[]{"pft", "365", "10", "5000"};
         CreadorInversion creadorInversion = new CreadorInversion(argumentos);
@@ -26,7 +26,7 @@ public class CreadorInversionTest {
     }
 
     @Test
-    public void seCreaUnaInversionDelTipoPFTCuandoRecibePfp() throws ValorInversionIncorrectoExcepcion, CampoIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion {
+    public void seCreaUnaInversionDelTipoPFTCuandoRecibePfp() throws ValorInversionIncorrectoExcepcion, CampoIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion, InversionInexistenExcepcion {
 
         String[] argumentos = new String[]{"pfp", "365", "300", "40", "100000"};
         CreadorInversion creadorInversion = new CreadorInversion(argumentos);
@@ -39,7 +39,7 @@ public class CreadorInversionTest {
     }
 
     @Test
-    public void seCreaUnaInversionDelTipoDolarCuandoRecibeDol() throws ValorInversionIncorrectoExcepcion, CampoIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion {
+    public void seCreaUnaInversionDelTipoDolarCuandoRecibeDol() throws ValorInversionIncorrectoExcepcion, CampoIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion, InversionInexistenExcepcion {
 
         String[] argumentos = new String[]{"dol", "100", "20", "25"};
         CreadorInversion creadorInversion = new CreadorInversion(argumentos);
@@ -59,9 +59,17 @@ public class CreadorInversionTest {
     }
 
     @Test(expected = CantidadArgumentosInvalidaExcepcion.class)
-    public void seCreaUnaInversionDelTipoPFPSinUnArgDeberiaLanzarExcepcion() throws ValorInversionIncorrectoExcepcion, CampoIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion {
+    public void seCreaUnaInversionDelTipoPFPSinUnArgDeberiaLanzarExcepcion() throws ValorInversionIncorrectoExcepcion, CampoIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion, InversionInexistenExcepcion {
 
         String[] argumentos = new String[]{"pfp", "365", "300", "40"};
+        new CreadorInversion(argumentos).crear();
+
+    }
+
+    @Test(expected = InversionInexistenExcepcion.class)
+    public void sePasaUnaInversionInexistenteDeberiaLanzarExcepcion() throws ValorInversionIncorrectoExcepcion, CampoIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion, InversionInexistenExcepcion {
+
+        String[] argumentos = new String[]{"ppp", "365", "300", "40"};
         new CreadorInversion(argumentos).crear();
 
     }

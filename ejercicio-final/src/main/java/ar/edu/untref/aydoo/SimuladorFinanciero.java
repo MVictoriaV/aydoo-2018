@@ -17,7 +17,7 @@ public class SimuladorFinanciero {
     public Double obtenerGanancia(List<Inversion> inversiones) throws InversionInexistenExcepcion {
 
         if (inversiones == null || inversiones.isEmpty()) {
-            throw new InversionInexistenExcepcion();
+            throw new InversionInexistenExcepcion("Sin inversion, inversion nula. Debe tener al menos una inversion");
         }
 
         Double gananciaTotal = 0d;

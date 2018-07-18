@@ -18,14 +18,20 @@ public class CreadorInversion {
         }
     }
 
-    public Inversion crear() throws CampoIncorrectoExcepcion, ValorInversionIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion {
-        Inversion inversion = null;
-        if (tipoInversion.matches("pft")) {
-            inversion = crearPlazoFijoTradicional();
-        } else if (tipoInversion.matches("pfp")) {
-            inversion = crearPlazoFijoPrecancelable();
-        } else if (tipoInversion.matches("dol")) {
-            inversion = crearDolar();
+    public Inversion crear() throws CampoIncorrectoExcepcion, ValorInversionIncorrectoExcepcion, CantidadArgumentosInvalidaExcepcion, InversionInexistenExcepcion {
+        Inversion inversion;
+        switch (tipoInversion){
+            case "pft":
+                inversion = crearPlazoFijoTradicional();
+                break;
+            case "pfp":
+                inversion = crearPlazoFijoPrecancelable();
+                break;
+            case "dol":
+                inversion = crearDolar();
+                break;
+            default:
+                throw new InversionInexistenExcepcion("Sin inversion, inversion nula. Debe tener al menos una inversion");
         }
         return inversion;
     }
